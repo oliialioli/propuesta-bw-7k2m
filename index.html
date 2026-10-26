@@ -660,8 +660,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       var side = Math.random() < .5, w = r.width, x, y;
       if (w < 640) { x = w * (.2 + Math.random() * .6); y = r.height * (side ? .12 + Math.random() * .08 : .82 + Math.random() * .08); }
       else { x = side ? w * (.08 + Math.random() * .24) : w * (.68 + Math.random() * .24); y = r.height * (.18 + Math.random() * .62); }
-      spawn(x, y, x + (Math.random() - .5) * 120, y + 60);
-    }, 900);
+      var mob = w < 760; spawn(x, y, x + (Math.random() - .5) * (mob ? 80 : 120), y + (mob ? 90 : 60));
+    }, cover.clientWidth < 760 ? 1300 : 900);
   }
   if (!reduce) {
     cover.addEventListener('pointermove', function (e) {
