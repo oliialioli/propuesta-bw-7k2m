@@ -238,7 +238,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .about .big { font-size: clamp(26px, 3vw, 40px); line-height: 1.12; letter-spacing: -0.05em; text-wrap: balance; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
 .tags span { background: var(--pill); border-radius: 999px; padding: 6px 13px; font-size: 14px; }
-.feat { position: relative; margin: 48px 0 0; border-radius: 10px; overflow: hidden; background: var(--card); }
+.feats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 48px; }
+@media (max-width: 760px) { .feats { grid-template-columns: minmax(0, 1fr); } }
+.feat { position: relative; margin: 0; border-radius: 10px; overflow: hidden; background: var(--card); }
 .feat video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .feat .cap { position: absolute; left: 10px; bottom: 10px; background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(10px); border-radius: 999px; padding: 5px 11px; font-size: 13px; }
 .feat .cap span { color: var(--soft); margin-left: 4px; }
@@ -558,9 +560,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           </div>
         </div>
         <p class="sub-h">Ha trabajado con</p>
-        <div class="tags" style="margin-top:0"><span>Coca-Cola</span><span>Capchase</span><span>Indra</span><span>Baleària</span><span>TADIG</span><span>Colectin</span><span>TalentL</span><span>Jackrom</span><span>Vype</span><span>Emotionhack</span></div>
+        <div class="tags" style="margin-top:0"><span>Coca-Cola</span><span>Capchase</span><span>Indra</span><span>Baleària</span><span>TADIG</span><span>Colectin</span><span>TalentL</span><span>Jackrom</span><span>Vype</span><span>Emotionhack</span><span>EdgeIQ</span></div>
       </div>
-      <figure class="feat"><video src="vid/colectin-web.mp4" poster="vid/colectin-web-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Colectin, marketplace: recorrido por la web"></video><figcaption class="cap">Colectin<span>Marketplace · producto y web</span></figcaption></figure>
+      <div class="feats"><figure class="feat"><video src="vid/edgeiq-platform.mp4" poster="vid/edgeiq-platform-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="EdgeIQ, plataforma IoT: recorrido por la web"></video><figcaption class="cap">EdgeIQ<span>Marca digital y web · Esamesa Studio</span></figcaption></figure><figure class="feat"><video src="vid/colectin-web.mp4" poster="vid/colectin-web-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Colectin, marketplace: recorrido por la web"></video><figcaption class="cap">Colectin<span>Marketplace · producto y web</span></figcaption></figure></div>
       <div class="gal" id="gal"></div>
     </div>
   </section>
