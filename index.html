@@ -486,27 +486,23 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </div>
   </section>
 
-  <section class="ch" id="releases" data-t="La web">
+  <section class="ch" id="releases" data-t="Lanzamientos">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(003)</span><h2>Qué incluye la web</h2><p>Una web corporativa y comercial para presentar la empresa, explicar sus servicios y productos, y facilitar las solicitudes de presupuesto.</p></div>
+      <div class="ch-h"><span class="n">(003)</span><h2>Qué publicaremos en cada etapa</h2><p>Una web corporativa y comercial para presentar la empresa, explicar sus servicios y productos, y facilitar las solicitudes de presupuesto. Primero se publica la base comercial; después, la ampliación de contenidos y recursos.</p></div>
       <div class="ch-b">
-        <p class="blk" style="margin-top:0"><b>Estructura orientativa.</b> Sirve como referencia para estimar el alcance. Los nombres de las secciones, su organización y su distribución entre lanzamientos se validarán al inicio del proyecto, una vez revisados la oferta y los contenidos de la empresa.</p>
-        <div class="list wl">
-          <div><h3>Home</h3><p>Presentación de la empresa, servicios y productos destacados, elementos de confianza y accesos principales.</p></div>
-          <div><h3>About us</h3><p>Información corporativa, experiencia, instalaciones y otros contenidos de presentación.</p></div>
-          <div><h3>Servicios</h3><p>Presentación de los servicios y páginas de detalle.</p></div>
-          <div><h3>Productos</h3><p>Entrada al catálogo, categorías con sus productos y fichas de detalle de producto.</p></div>
-          <div><h3>Blog / News</h3><p>Listado de publicaciones y páginas de artículo.</p></div>
-          <div><h3>Recursos</h3><p>Catálogos, documentación técnica, certificaciones y otros descargables.</p></div>
-          <div><h3>Contacto</h3><p>Información de contacto y formulario de consultas generales.</p></div>
-          <div><h3>Request a Quote</h3><p>Formulario específico para solicitar presupuesto, accesible desde la navegación y las páginas comerciales.</p></div>
+        <div class="rel2">
+          <div class="relc"><span class="rk">Primer lanzamiento · 11 de enero</span><h3>La web comercial</h3><p class="rl">La base corporativa y comercial, con los formularios conectados al CRM para empezar a recibir consultas.</p><ul><li>Home<span>Empresa, servicios y productos destacados, elementos de confianza y accesos principales.</span></li><li>About us<span>Información corporativa y presentación de la empresa.</span></li><li>Servicios<span>Presentación y una selección inicial de páginas de detalle.</span></li><li>Productos<span>Entrada al catálogo y una selección inicial de categorías y fichas.</span></li><li>Contacto<span>Información y formulario de consultas generales.</span></li><li>Request a Quote<span>Formulario de presupuesto, accesible desde la navegación y las páginas comerciales.</span></li><li>Navegación y footer<span>Accesos principales, certificaciones, redes y legales.</span></li></ul></div>
+          <div class="relc"><span class="rk">Segundo lanzamiento · finales de febrero</span><h3>Contenidos y recursos</h3><p class="rl">Ampliación de las secciones previstas en el alcance e incorporación de blog y recursos.</p><ul><li>Ajustes<span>Cambios acordados sobre el primer lanzamiento.</span></li><li>About us<span>Experiencia, instalaciones y otros contenidos de presentación.</span></li><li>Servicios y productos<span>Resto de páginas de detalle, categorías y fichas previstas.</span></li><li>Blog / News<span>Listado de publicaciones y páginas de artículo.</span></li><li>Recursos<span>Catálogos, documentación técnica, certificaciones y descargables.</span></li></ul></div>
         </div>
-        <div class="rel2" style="margin-top:56px">
-          <div class="relc"><span class="rk">Primer lanzamiento · 11 de enero</span><h3>La web comercial</h3><p class="rl">Publicación de la base corporativa y comercial: Home, About us, presentación de servicios y productos, una selección inicial de páginas de detalle, Contacto y Request a Quote.</p><p class="rl">Incluye navegación, footer y conexión de los formularios con el CRM. Los contenidos prioritarios se seleccionarán conjuntamente durante la fase de arquitectura.</p></div>
-          <div class="relc"><span class="rk">Segundo lanzamiento · finales de febrero</span><h3>Contenidos y recursos</h3><p class="rl">Ampliación de las secciones corporativas, de servicios y de productos previstas en el alcance. Incorporación del Blog / News y del área de Recursos, junto con los ajustes acordados sobre el primer lanzamiento.</p></div>
+        <p class="sub-h" style="margin-top:48px">Estructura orientativa</p>
+        <div class="pills" role="group" aria-label="Ver lanzamiento">
+          <button class="pill sm" type="button" data-f="0" aria-pressed="true">Todo</button>
+          <button class="pill sm" type="button" data-f="1" aria-pressed="false">Web comercial · 11 ene</button>
+          <button class="pill sm" type="button" data-f="2" aria-pressed="false">Contenidos y recursos · fin feb</button>
+          <span class="sum">Referencia para estimar el alcance</span>
         </div>
-        <p class="blk" style="margin-top:56px"><b>Un sistema de plantillas reutilizables.</b> Las páginas de un mismo tipo compartirán una plantilla, con variantes de contenido y composición. Por ejemplo, las categorías de productos utilizarán una plantilla común y las fichas de producto otra.</p>
-        <p class="note">La arquitectura definitiva se desarrollará dentro del alcance contratado. Cualquier ampliación de plantillas, funcionalidades o carga de contenidos se valorará y acordará previamente.</p>
+        <div class="map"><div class="tree" id="tree"></div></div><p class="swipe">Desliza para ver el mapa completo →</p>
+        <p class="note">Los nombres de las secciones, su organización y su distribución entre lanzamientos se validarán al inicio del proyecto, una vez revisados la oferta y los contenidos de la empresa. Las páginas de un mismo tipo comparten una plantilla con variantes de contenido y composición: por ejemplo, las categorías de producto usan una plantilla común y las fichas, otra. Cualquier ampliación de plantillas, funcionalidades o carga de contenidos se valorará y acordará previamente.</p>
       </div>
     </div>
   </section>
@@ -750,14 +746,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   // ---------- sitemap ----------
   var TREE = [
-    ['About Us', 1, [['Historia', 2], ['Compromiso', 2], ['Instalaciones', 2]]],
-    ['Oferta', 1, [['Detalle 1', 1], ['Detalle 2', 1], ['Detalle 3', 1], ['Detalle 4', 1]]],
-    ['Páginas', 2, [['6–8 independientes', 2]]],
-    ['Multinivel', 2, [['3–5 categorías', 2], ['Fichas de detalle', 2]]],
+    ['About us', 1, [['Información corporativa', 1], ['Experiencia', 2], ['Instalaciones', 2]]],
+    ['Servicios', 1, [['Detalle · selección inicial', 1], ['Resto de detalles', 2]]],
+    ['Productos', 1, [['Categorías', 1], ['Fichas de producto', 1], ['Ampliación del catálogo', 2]]],
     ['Blog / News', 2, [['Listado', 2], ['Artículo', 2]]],
-    ['Documentos', 2, [['Descargables', 2]]],
+    ['Recursos', 2, [['Catálogos y documentación', 2], ['Certificaciones', 2]]],
     ['Contacto', 1, [['Formulario → CRM', 1]]],
-    ['Request a Quote', 1, [['Flujo → CRM', 1]]]
+    ['Request a Quote', 1, [['Formulario → CRM', 1]]]
   ];
   function node(t, r, cls) { return '<div class="node ' + cls + ' r' + r + '"><i>' + (r === 1 ? 'Web comercial' : 'Contenidos') + '</i>' + t + '</div>'; }
   if ($('tree')) $('tree').innerHTML = '<div class="root"><div class="node main r1" style="min-width:200px;text-align:center"><i>Web comercial</i>Home · navegación · footer</div></div>' +
