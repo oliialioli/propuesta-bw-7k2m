@@ -74,7 +74,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* ---------- cover ---------- */
 .cover { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; display: grid; place-items: center; text-align: center; }
 .trail { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.trail img { position: absolute; width: var(--w, 220px); height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; transform: translate(-50%, -50%) scale(.3); transition: transform .9s cubic-bezier(.16,1,.3,1), left 1s cubic-bezier(.16,1,.3,1), top 1s cubic-bezier(.16,1,.3,1), opacity .7s ease; box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+.trail img { position: absolute; width: var(--w, 220px); height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; transform: translate(-50%, -50%) scale(.3); transition: transform .9s cubic-bezier(.16,1,.3,1), left 1.25s cubic-bezier(.16,1,.3,1), top 1.25s cubic-bezier(.16,1,.3,1), opacity .7s ease; box-shadow: 0 12px 40px rgba(0,0,0,.12); }
 .trail img.in { transform: translate(-50%, -50%) scale(1); }
 .trail img.out { opacity: 0; transform: translate(-50%, -50%) scale(.9); }
 .cover .c { position: relative; padding: 0 20px; display: grid; justify-items: center; gap: 22px; pointer-events: none; }
@@ -645,9 +645,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     im.style.setProperty('--w', w + 'px');
     trail.appendChild(im); live.push(im);
     requestAnimationFrame(function () { requestAnimationFrame(function () {
-      setTimeout(function () { im.style.left = x + 'px'; im.style.top = y + 'px'; im.classList.add('in'); }, 70);
+      setTimeout(function () { im.style.left = x + 'px'; im.style.top = y + 'px'; im.classList.add('in'); }, 160);
     }); });
-    setTimeout(function () { im.classList.add('out'); setTimeout(function () { im.remove(); live = live.filter(function (x) { return x !== im; }); }, 750); }, 1300);
+    setTimeout(function () { im.classList.add('out'); setTimeout(function () { im.remove(); live = live.filter(function (x) { return x !== im; }); }, 750); }, 1450);
     while (live.length > 9) { var o = live.shift(); o.remove(); }
   }
   function autoplay(on) {
@@ -666,7 +666,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       if (e.pointerType !== 'mouse') return;
       autoplay(false); clearTimeout(idleT); idleT = setTimeout(function () { autoplay(true); }, 2600);
       var r = cover.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-      if (Math.hypot(x - lx, y - ly) > 90) { var px = lx < -100 ? x : lx, py = ly < -100 ? y : ly; lx = x; ly = y; spawn(x, y, px, py); }
+      if (Math.hypot(x - lx, y - ly) > 90) { var px = lx < -100 ? x : lx, py = ly < -100 ? y : ly; lx = x; ly = y; setTimeout(function () { spawn(x, y, px, py); }, 120); }
     });
     autoplay(true);
   } else { $('hint').hidden = true; }
