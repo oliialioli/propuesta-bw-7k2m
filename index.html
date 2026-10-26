@@ -347,7 +347,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
     .index h2, .index .lead, .chap a,
     .ch-h .n, .ch-h h2, .ch-h p,
-    .fact, .list > div, .dl details, .pills,
+    .fact, .res > div, .list > div, .dl details, .pills,
     .map, .note, .relc, .tl, .mile,
     .mem, .lanes > *, .about .big, .tags,
     .tot, .pay, .cond, .step, .end h2, .end .row {
@@ -378,6 +378,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .wrap { padding-left: 40px; padding-right: 40px; }
   .about .big { font-size: clamp(26px, 2.6vw, 34px); }
 }
+.res { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.res > div { background: var(--card); border-radius: 14px; padding: 22px 22px 24px; display: grid; align-content: start; gap: 10px; }
+.res .i { font-family: var(--mono); font-size: 12px; color: var(--soft); letter-spacing: 0; }
+.res h3 { font-size: 22px; line-height: 1.15; letter-spacing: -0.045em; font-weight: 400; max-width: 16ch; }
+.res p { color: var(--soft); font-size: 15.5px; }
+@media (max-width: 860px) { .res { grid-template-columns: minmax(0, 1fr); } }
+.blk { font-size: clamp(20px, 2vw, 26px); line-height: 1.25; letter-spacing: -0.045em; max-width: 40ch; margin: 28px 0 20px; color: var(--soft); text-wrap: pretty; }
+.blk b { font-weight: 400; color: var(--ink); }
+.blk[hidden] { display: none; }
 </style>
 </head>
 <body>
@@ -422,51 +431,47 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="wrap grid">
       <div>
         <h2>Evolucionar lo construido. Consolidar un sistema.</h2>
-        <p class="lead">Propuesta de identidad visual y web para una empresa industrial B2B: una marca más sólida y coherente, y una web que presente su oferta con claridad y genere solicitudes de cotización.</p>
+        <p class="lead">Propuesta de identidad visual y sitio web para una empresa industrial B2B: objetivos, entregables, calendario, equipo e inversión.</p>
       </div>
       <nav class="chap" aria-label="Índice" id="chapList"></nav>
     </div>
   </section>
 
-  <section class="ch" id="enfoque" data-t="Enfoque">
+  <section class="ch" id="objetivos" data-t="Qué queremos conseguir">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(001)</span><h2>Cómo lo planteamos</h2><p>El proyecto parte de una estrategia definida y de una dirección visual ya elegida. El objetivo es concretarla con criterio y trasladarla a la web de forma ágil.</p></div>
+      <div class="ch-h"><span class="n">(001)</span><h2>Qué queremos conseguir</h2><p>Que la marca y la web trabajen juntas para transmitir la solidez de la empresa, explicar con claridad lo que ofrece y facilitar que un cliente potencial dé el paso de contactar.</p></div>
       <div class="ch-b">
-        <div class="facts">
+        <div class="res">
+          <div><span class="i">01</span><h3>Una marca coherente y fácil de aplicar</h3><p>Un sistema visual que conserve lo que funciona y dé criterios claros al equipo y a sus proveedores.</p></div>
+          <div><span class="i">02</span><h3>Una oferta más fácil de entender</h3><p>Una web que ayude a cada audiencia a encontrar las soluciones y la información que necesita.</p></div>
+          <div><span class="i">03</span><h3>Un camino claro hacia el contacto</h3><p>Formularios de contacto y cotización conectados con el proceso comercial.</p></div>
+        </div>
+        <p class="sub-h" style="margin-top:56px">Cómo lo abordamos</p>
+        <div class="list">
+          <div><h3>Desde la estrategia existente</h3><p>El trabajo parte de la estrategia y la dirección visual ya definidas, con <strong>criterios acordados en el arranque</strong> para que cada decisión responda al negocio.</p></div>
+          <div><h3>Marca y web en paralelo</h3><p>Con logotipo, tipografía y color aprobados comienza el diseño web, que sirve además para <strong>validar la marca en páginas reales</strong>.</p></div>
+          <div><h3>Publicación en dos etapas</h3><p>El 11 de enero, el contenido comercial para clientes y prospectos. A finales de febrero, el resto de audiencias y contenidos.</p></div>
+        </div>
+        <div style="margin-top:48px"><div class="facts">
           <div class="fact"><span class="soft" style="font-size:14px">Inversión</span><span class="v">7.950 €<small>+ IVA</small></span><span class="s">Precio cerrado</span></div>
           <div class="fact"><span class="soft" style="font-size:14px">Brand</span><span class="v">11 dic</span><span class="s">Sistema completo</span></div>
           <div class="fact"><span class="soft" style="font-size:14px">Release 1</span><span class="v">11 ene</span><span class="s">Clientes y prospectos</span></div>
           <div class="fact"><span class="soft" style="font-size:14px">Release 2</span><span class="v">Fin feb</span><span class="s">Fecha a confirmar</span></div>
-        </div>
-        <div class="list" style="margin-top:48px">
-          <div><h3>Sobre lo que ya existe</h3><p>Las rutas visuales se desarrollan sobre la dirección elegida, con especial atención a la tipografía y a partir de <strong>criterios acordados en el arranque</strong>. Así, cada decisión se toma con argumentos de negocio, no de gusto personal.</p></div>
-          <div><h3>Marca y web en paralelo</h3><p>Una vez aprobados logotipo, tipografía y color, comienza el diseño web, que actúa como <strong>banco de pruebas de la marca</strong>: aplicar el sistema a páginas reales permite validar pronto qué funciona.</p></div>
-          <div><h3>Dos releases</h3><p>La primera, el 11 de enero, cubre el contenido comercial para clientes y prospectos. La segunda, a finales de febrero, incorpora el resto de audiencias y contenidos.</p></div>
-          <div><h3>Un equipo integrado</h3><p>Estrategia, marca y web avanzan de forma coordinada. Los textos se <strong>desarrollan conjuntamente</strong> y el diseño se trabaja siempre con contenido real.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ch" id="objetivos" data-t="Objetivos">
-    <div class="wrap">
-      <div class="ch-h"><span class="n">(002)</span><h2>Objetivos</h2><p>Objetivos de partida, que se validarán en la sesión de arranque.</p></div>
-      <div class="ch-b list">
-        <div><h3>La marca</h3><p>Evolucionar sin perder el valor construido y consolidarse como un sistema coherente, documentado y fácil de aplicar por el equipo interno y sus proveedores.</p></div>
-        <div><h3>La web</h3><p>Presentar la oferta con claridad, guiar a cada audiencia y convertir visitas en solicitudes de cotización, con autonomía del equipo para mantenerla actualizada.</p></div>
-        <div><h3>El proyecto</h3><p>Cumplir los tres hitos principales con decisiones fundamentadas en la estrategia y sin bloqueos entre marca y web.</p></div>
+        </div></div>
       </div>
     </div>
   </section>
 
   <section class="ch" id="entregables" data-t="Entregables">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(003)</span><h2>Qué se entrega</h2><p>Cada entregable con su alcance y formato. Despliega cada uno para ver el detalle.</p></div>
+      <div class="ch-h"><span class="n">(002)</span><h2>Qué se entrega</h2><p>Cada entregable con su alcance y formato. Despliega cada uno para ver el detalle.</p></div>
       <div class="ch-b">
         <div class="pills" role="group" aria-label="Frente">
-          <button class="pill sm" type="button" id="tabBrand" aria-pressed="true">Brand · 12</button>
-          <button class="pill sm" type="button" id="tabWeb" aria-pressed="false">Website · 8</button>
+          <button class="pill sm" type="button" id="tabBrand" aria-pressed="true">Identidad visual · 12</button>
+          <button class="pill sm" type="button" id="tabWeb" aria-pressed="false">Diseño y desarrollo web · 8</button>
         </div>
+        <p class="blk" id="leadBrand"><b>Identidad visual.</b> Un sistema para que la marca se reconozca y se aplique con coherencia en todos sus puntos de contacto.</p>
+        <p class="blk" id="leadWeb" hidden><b>Diseño y desarrollo web.</b> Una web que ordene la oferta, facilite las consultas comerciales y permita al equipo actualizar los contenidos.</p>
         <div class="dl" id="gBrand"></div>
         <div class="dl" id="gWeb" hidden></div>
       </div>
@@ -475,7 +480,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <section class="ch" id="releases" data-t="Releases">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(004)</span><h2>Qué entra en cada release</h2><p>Mapa inicial elaborado a partir del brief, con margen suficiente. La distribución definitiva se cerrará con el cliente durante la fase de arquitectura.</p></div>
+      <div class="ch-h"><span class="n">(003)</span><h2>Qué entra en cada release</h2><p>Mapa inicial elaborado a partir del brief, con margen suficiente. La distribución definitiva se cerrará con el cliente durante la fase de arquitectura.</p></div>
       <div class="ch-b">
         <div class="pills" role="group" aria-label="Ver release">
           <button class="pill sm" type="button" data-f="0" aria-pressed="true">Todo</button>
@@ -495,7 +500,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <section class="ch" id="calendario" data-t="Calendario">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(005)</span><h2>De noviembre a febrero</h2><p>Inicio el 2 de noviembre. En Navidad, el trabajo se detiene únicamente en los días festivos. Pasa el cursor o toca cada barra para ver el detalle.</p></div>
+      <div class="ch-h"><span class="n">(004)</span><h2>De noviembre a febrero</h2><p>Inicio el 2 de noviembre. En Navidad, el trabajo se detiene únicamente en los días festivos. Pasa el cursor o toca cada barra para ver el detalle.</p></div>
       <div class="pills" role="group" aria-label="Filtrar calendario">
         <button class="pill sm" type="button" data-t="all" aria-pressed="true">Todo</button>
         <button class="pill sm" type="button" data-t="brand" aria-pressed="false">Brand</button>
@@ -516,7 +521,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <section class="ch" id="equipo" data-t="Cómo trabajaremos">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(006)</span><h2>Cómo trabajaremos</h2><p>Un equipo reducido y cercano, con marca y web avanzando en paralelo de forma coordinada.</p></div>
+      <div class="ch-h"><span class="n">(005)</span><h2>Cómo trabajaremos</h2><p>Un equipo reducido y cercano, con marca y web avanzando en paralelo de forma coordinada.</p></div>
       <div class="ch-b">
         <div class="team two">
           <div class="mem dark"><span class="r">Diseño de marca y web</span><h3>Esamesa Studio</h3><p>Dirección visual de marca y web, desde las primeras rutas hasta el desarrollo en Framer. Un único interlocutor para todo el diseño, responsable de presentar cada hito.</p></div>
@@ -540,7 +545,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <section class="ch" id="portfolio" data-t="Portfolio">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(007)</span><h2>Sobre Olaia</h2><p>Identidad, producto digital y web. Pulsa sobre una imagen para ampliarla.</p></div>
+      <div class="ch-h"><span class="n">(006)</span><h2>Sobre Olaia</h2><p>Identidad, producto digital y web. Pulsa sobre una imagen para ampliarla.</p></div>
       <div class="ch-b">
         <div class="about">
           <div>
@@ -569,7 +574,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <section class="ch" id="condiciones" data-t="Condiciones">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(008)</span><h2>Condiciones y siguientes pasos</h2><p>Cualquier cambio de alcance se presupuesta y se acuerda antes de llevarse a cabo.</p></div>
+      <div class="ch-h"><span class="n">(007)</span><h2>Condiciones y siguientes pasos</h2><p>Cualquier cambio de alcance se presupuesta y se acuerda antes de llevarse a cabo.</p></div>
       <div class="ch-b">
         <div class="conds">
           <div class="cond"><h3>Incluye</h3><ul><li>Todo lo descrito en entregables y releases.</li><li>Dos rondas de ajustes en cada fase creativa.</li><li>Comprobaciones y corrección de incidencias en validaciones técnicas y entregas.</li><li>Textos desarrollados conjuntamente con el equipo de dirección.</li><li>30 días de corrección de incidencias tras cada release.</li><li>Archivos finales y cesión de derechos de uso, una vez completado el pago.</li></ul></div>
@@ -588,7 +593,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <section class="ch" id="inversion" data-t="Inversión">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(009)</span><h2>Inversión</h2><p>Precio cerrado por bloque para el alcance descrito. Importes en euros, IVA no incluido.</p></div>
+      <div class="ch-h"><span class="n">(008)</span><h2>Inversión</h2><p>Precio cerrado por bloque para el alcance descrito. Importes en euros, IVA no incluido.</p></div>
       <div class="ch-b money">
         <div class="tot">
           <div><span style="opacity:.6;font-size:14px">Inversión total</span><div class="v">7.950 €<small>+ IVA</small></div></div>
@@ -695,8 +700,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   // ---------- deliverables ----------
   var BRAND = [
     ['Rutas visuales', '3 rutas · 2 rondas', 'Tres rutas sobre el camino elegido, con foco tipográfico y el razonamiento de cada una frente a los criterios del brief.', 'Una dirección conceptual nueva tras elegir ruta supone revisar el alcance.'],
-    ['Logo y arquitectura', 'Principal, secundaria y símbolo', 'Composiciones, jerarquías, proporciones, área de protección, tamaños mínimos y usos sobre distintos fondos. Incluye la documentación técnica de construcción: retícula, curvas y geometría.', 'SVG, PNG, PDF y EPS.'],
-    ['Estilo tipográfico', 'Familias, pesos y jerarquías', 'Reglas de uso para aplicaciones y web.', 'Se identifican las licencias necesarias; su coste va aparte.'],
+    ['Logotipo y versiones', 'Principal, secundaria y símbolo', 'Composiciones, jerarquías, proporciones, área de protección, tamaños mínimos y usos sobre distintos fondos. Incluye la documentación técnica de construcción: retícula, curvas y geometría.', 'SVG, PNG, PDF y EPS.'],
+    ['Sistema tipográfico', 'Familias, pesos y jerarquías', 'Reglas de uso para aplicaciones y web.', 'Se identifican las licencias necesarias; su coste va aparte.'],
     ['Iconografía', '24 iconos base', 'Estilo, colección base y reglas para ampliar el sistema.', 'SVG.'],
     ['Sistema de color', 'HEX · RGB · CMYK', 'Paleta principal y secundaria, combinaciones y criterios de contraste para digital e impreso.', ''],
     ['Elementos gráficos', 'Editables', 'Formas, patrones y recursos con reglas de composición.', ''],
@@ -705,17 +710,17 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     ['Mockups de aplicación', '6 escenas sectoriales', 'Representaciones de la identidad aplicada a contextos propios de la industria del cliente, como embalaje de transporte o señalética de planta. Se seleccionan en el arranque.', 'Los mockups muestran el comportamiento de la marca y no constituyen diseños de producción. Piezas como una línea textil, papelería o publicaciones editoriales requieren un proceso de diseño específico y se presupuestan aparte.'],
     ['Plantilla de presentación', 'PowerPoint · estructura + ejemplos', 'Portada, contraportada, separadores y páginas internas, más diapositivas de ejemplo con contenido real: gráficos, tablas y datos. Las tipologías de contenido se definen conjuntamente con el equipo de dirección.', 'Compatible con Google Slides y Keynote.'],
     ['Brandbook interactivo', 'Brand site + PDF', 'La referencia única para aplicar la marca con coherencia, pensada para el equipo interno y sus proveedores. Documenta todo el sistema: logotipo y variantes, construcción técnica, tipografía, color, elementos gráficos, fotografía y aplicaciones, con ejemplos de uso correcto e incorrecto. Incluye guías navegables, descarga directa de recursos y versión en PDF.', 'Incluye diseño, construcción y configuración. El plan de la plataforma es un coste recurrente del cliente.'],
-    ['Librería final', 'Nomenclatura + traspaso', 'Editables y exportaciones organizados: logotipos, colores, tipografías y licencias.', 'Sesión de traspaso de una hora con el equipo.']
+    ['Archivos y recursos de marca', 'Nomenclatura + traspaso', 'Editables y exportaciones organizados: logotipos, colores, tipografías y licencias.', 'Sesión de traspaso de una hora con el equipo.']
   ];
   var WEB = [
     ['Arquitectura y UX/UI', '~12 plantillas · 3 tamaños', 'Revisión de la arquitectura y los contenidos actuales con el cliente: qué se mantiene, qué se modifica y qué se incorpora. Mapa del sitio, recorridos por audiencia y reparto entre releases. Exploración visual, wireframes y plantillas en escritorio, tablet y móvil.', 'Componentes en Figma.'],
     ['Sistema de plantillas', 'Plantillas con variantes', 'Cada tipo de página se diseña como una plantilla modular con variantes de fondo, color y composición de módulos. Así cada página tiene identidad propia sin multiplicar diseños.', 'El alcance se mide en plantillas únicas, no en número de páginas.'],
     ['Textos y contenidos', 'Desarrollo conjunto con dirección', 'El equipo de dirección lidera la narrativa y los mensajes; desde diseño se aporta la arquitectura de contenidos, titulares, microcopy y su ajuste al diseño.', 'El diseño se trabaja siempre con contenido real.'],
-    ['Implementación y CMS', 'Framer', 'Colecciones del CMS (oferta, fichas y blog), carga inicial acordada, acceso y formación.', ''],
+    ['Desarrollo y gestión de contenidos', 'Framer', 'Colecciones del CMS (oferta, fichas y blog), carga inicial acordada, acceso y formación.', ''],
     ['Formularios y CRM', 'Contacto + Request a Quote', 'Campos, adjuntos, validaciones, confirmaciones, destino, asignación y seguimiento. Flujo probado de principio a fin.', 'Integración directa o vía Make/Zapier según el CRM; suscripciones aparte.'],
     ['Pruebas y publicación', 'HTTPS en su dominio', 'Navegación, formularios, responsive, accesibilidad básica, rendimiento, SEO técnico básico y medición. Coordinación de DNS y hosting.', ''],
     ['Plataforma', 'Framer recomendado', 'Permite publicar con agilidad, ofrece un CMS sencillo para el equipo y garantiza una gran fidelidad a la marca.', 'El límite del CMS depende del plan y los formularios llegan al CRM por integración.'],
-    ['Entrega y continuidad', '30 días por release', 'Accesos, documentación, guía de uso y formación, con corrección de incidencias tras cada release.', 'Mantenimiento posterior opcional, como bolsa de horas.']
+    ['Formación y soporte tras el lanzamiento', '30 días por release', 'Accesos, documentación, guía de uso y formación, con corrección de incidencias tras cada release.', 'Mantenimiento posterior opcional, como bolsa de horas.']
   ];
   function rows(list) {
     return list.map(function (d, i) {
@@ -724,7 +729,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     }).join('');
   }
   $('gBrand').innerHTML = rows(BRAND); $('gWeb').innerHTML = rows(WEB);
-  function tab(web) { $('gBrand').hidden = web; $('gWeb').hidden = !web; $('tabBrand').setAttribute('aria-pressed', !web); $('tabWeb').setAttribute('aria-pressed', web); }
+  function tab(web) { $('gBrand').hidden = web; $('gWeb').hidden = !web; $('leadBrand').hidden = web; $('leadWeb').hidden = !web; $('tabBrand').setAttribute('aria-pressed', !web); $('tabWeb').setAttribute('aria-pressed', web); }
   $('tabBrand').addEventListener('click', function () { tab(false); });
   $('tabWeb').addEventListener('click', function () { tab(true); });
 
