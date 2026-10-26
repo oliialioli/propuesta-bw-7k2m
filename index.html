@@ -390,6 +390,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .rel2 { margin-top: 0; }
 .relc .rk { display: block; font-size: 14px; color: var(--soft); margin-bottom: 6px; }
 .relc .rl { font-size: 16px; color: var(--soft); margin: 8px 0 14px; max-width: 46ch; }
+.wl { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; }
+.wl > div { grid-template-columns: 160px minmax(0, 1fr); }
+@media (max-width: 860px) { .wl { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) { .wl > div { grid-template-columns: minmax(0, 1fr); } }
+.relc .rl + .rl { margin-top: -6px; }
 </style>
 </head>
 <body>
@@ -453,7 +458,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <div class="list">
           <div><h3>Desde la estrategia existente</h3><p>El trabajo parte de la estrategia y la dirección visual ya definidas, con <strong>criterios acordados en el arranque</strong> para que cada decisión responda al negocio.</p></div>
           <div><h3>Marca y web en paralelo</h3><p>Con logotipo, tipografía y color aprobados comienza el diseño web, que sirve además para <strong>validar la marca en páginas reales</strong>.</p></div>
-          <div><h3>Publicación en dos etapas</h3><p>El 11 de enero, <strong>la web comercial</strong>: la empresa, su oferta y los formularios para empezar a recibir consultas. A finales de febrero, <strong>contenidos y recursos</strong>: información corporativa ampliada, contenidos especializados, documentación y blog.</p></div>
+          <div><h3>Publicación en dos etapas</h3><p>El 11 de enero, <strong>la web comercial</strong>: la base corporativa y comercial, con los formularios conectados al CRM para empezar a recibir consultas. A finales de febrero, <strong>contenidos y recursos</strong>: ampliación de servicios y productos, blog y área de recursos.</p></div>
         </div>
         <div style="margin-top:48px"><div class="facts">
           <div class="fact"><span class="soft" style="font-size:14px">Inversión</span><span class="v">7.950 €<small>+ IVA</small></span><span class="s">Precio cerrado</span></div>
@@ -481,23 +486,27 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </div>
   </section>
 
-  <section class="ch" id="releases" data-t="Lanzamientos">
+  <section class="ch" id="releases" data-t="La web">
     <div class="wrap">
-      <div class="ch-h"><span class="n">(003)</span><h2>Qué publicaremos en cada etapa</h2><p>Primero, lo necesario para empezar a recibir consultas; después, la profundidad de contenidos. El mapa se ha elaborado a partir del brief, con margen suficiente, y se cerrará con el cliente en la fase de arquitectura.</p></div>
+      <div class="ch-h"><span class="n">(003)</span><h2>Qué incluye la web</h2><p>Una web corporativa y comercial para presentar la empresa, explicar sus servicios y productos, y facilitar las solicitudes de presupuesto.</p></div>
       <div class="ch-b">
-        <div class="rel2">
-          <div class="relc"><span class="rk">Primer lanzamiento · 11 ene</span><h3>La web comercial</h3><p class="rl">La empresa, su oferta y los formularios necesarios para empezar a recibir consultas.</p><ul><li><b style="font-weight:400">Home</b><span>Presenta la empresa y orienta a cada audiencia.</span></li><li>About Us<span>Página principal.</span></li><li>Oferta<span>Portada y unas 4 páginas de detalle.</span></li><li>Contacto y Request a Quote<span>Conectados al CRM, con el flujo probado.</span></li><li>Navegación y footer<span>Accesos rápidos, mapa, certificaciones, redes y legales.</span></li></ul></div>
-          <div class="relc"><span class="rk">Segundo lanzamiento · finales de febrero</span><h3>Contenidos y recursos</h3><p class="rl">Ampliación de la información corporativa, contenidos especializados, documentación y blog.</p><ul><li>Ajustes de la web comercial<span>Cambios a partir del uso real y el feedback.</span></li><li>About · subsecciones<span>Historia, compromiso, instalaciones y ubicaciones.</span></li><li>Páginas independientes<span>Entre 6 y 8, con vídeo, certificaciones y descargables.</span></li><li>Contenido multinivel<span>3–5 categorías con fichas, recursos y glosario.</span></li><li>Blog / News<span>Listado y detalle en el CMS, 3 publicaciones de ejemplo.</span></li></ul></div>
+        <p class="blk" style="margin-top:0"><b>Estructura orientativa.</b> Sirve como referencia para estimar el alcance. Los nombres de las secciones, su organización y su distribución entre lanzamientos se validarán al inicio del proyecto, una vez revisados la oferta y los contenidos de la empresa.</p>
+        <div class="list wl">
+          <div><h3>Home</h3><p>Presentación de la empresa, servicios y productos destacados, elementos de confianza y accesos principales.</p></div>
+          <div><h3>About us</h3><p>Información corporativa, experiencia, instalaciones y otros contenidos de presentación.</p></div>
+          <div><h3>Servicios</h3><p>Presentación de los servicios y páginas de detalle.</p></div>
+          <div><h3>Productos</h3><p>Entrada al catálogo, categorías con sus productos y fichas de detalle de producto.</p></div>
+          <div><h3>Blog / News</h3><p>Listado de publicaciones y páginas de artículo.</p></div>
+          <div><h3>Recursos</h3><p>Catálogos, documentación técnica, certificaciones y otros descargables.</p></div>
+          <div><h3>Contacto</h3><p>Información de contacto y formulario de consultas generales.</p></div>
+          <div><h3>Request a Quote</h3><p>Formulario específico para solicitar presupuesto, accesible desde la navegación y las páginas comerciales.</p></div>
         </div>
-        <p class="sub-h" style="margin-top:48px">Mapa del sitio detallado</p>
-        <div class="pills" role="group" aria-label="Ver lanzamiento">
-          <button class="pill sm" type="button" data-f="0" aria-pressed="true">Todo</button>
-          <button class="pill sm" type="button" data-f="1" aria-pressed="false">Web comercial · 11 ene</button>
-          <button class="pill sm" type="button" data-f="2" aria-pressed="false">Contenidos y recursos · fin feb</button>
-          <span class="sum">Web comercial: 9 páginas · Contenidos y recursos: unas 20 · ~12 plantillas únicas</span>
+        <div class="rel2" style="margin-top:56px">
+          <div class="relc"><span class="rk">Primer lanzamiento · 11 de enero</span><h3>La web comercial</h3><p class="rl">Publicación de la base corporativa y comercial: Home, About us, presentación de servicios y productos, una selección inicial de páginas de detalle, Contacto y Request a Quote.</p><p class="rl">Incluye navegación, footer y conexión de los formularios con el CRM. Los contenidos prioritarios se seleccionarán conjuntamente durante la fase de arquitectura.</p></div>
+          <div class="relc"><span class="rk">Segundo lanzamiento · finales de febrero</span><h3>Contenidos y recursos</h3><p class="rl">Ampliación de las secciones corporativas, de servicios y de productos previstas en el alcance. Incorporación del Blog / News y del área de Recursos, junto con los ajustes acordados sobre el primer lanzamiento.</p></div>
         </div>
-        <div class="map"><div class="tree" id="tree"></div></div><p class="swipe">Desliza para ver el mapa completo →</p>
-        <p class="note">Cada plantilla se diseña una vez y se aplica a todas las páginas de su tipo, con variantes de fondo, color y módulos que aportan variedad. Una ficha multinivel o un artículo del blog cuentan como una única plantilla. El número de páginas es orientativo: el alcance se mide en plantillas únicas.</p>
+        <p class="blk" style="margin-top:56px"><b>Un sistema de plantillas reutilizables.</b> Las páginas de un mismo tipo compartirán una plantilla, con variantes de contenido y composición. Por ejemplo, las categorías de productos utilizarán una plantilla común y las fichas de producto otra.</p>
+        <p class="note">La arquitectura definitiva se desarrollará dentro del alcance contratado. Cualquier ampliación de plantillas, funcionalidades o carga de contenidos se valorará y acordará previamente.</p>
       </div>
     </div>
   </section>
@@ -751,7 +760,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     ['Request a Quote', 1, [['Flujo → CRM', 1]]]
   ];
   function node(t, r, cls) { return '<div class="node ' + cls + ' r' + r + '"><i>' + (r === 1 ? 'Web comercial' : 'Contenidos') + '</i>' + t + '</div>'; }
-  $('tree').innerHTML = '<div class="root"><div class="node main r1" style="min-width:200px;text-align:center"><i>Web comercial</i>Home · navegación · footer</div></div>' +
+  if ($('tree')) $('tree').innerHTML = '<div class="root"><div class="node main r1" style="min-width:200px;text-align:center"><i>Web comercial</i>Home · navegación · footer</div></div>' +
     '<div class="branches">' + TREE.map(function (b) { return '<div class="branch">' + node(b[0], b[1], 'main') + b[2].map(function (s) { return node(s[0], s[1], 'sub'); }).join('') + '</div>'; }).join('') + '</div>';
   document.querySelectorAll('#releases [data-f]').forEach(function (b) {
     b.addEventListener('click', function () {
