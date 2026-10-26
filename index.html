@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Propuesta Brand + Website</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&display=swap">
+<style>
+/* Layout: white editorial reading room. One neutral grotesk at regular weight with tight tracking, translucent grey pills for every control, full-screen cover with a portfolio image trail under the cursor, then the proposal as numbered chapters. */
+:root {
+  --bg: #ffffff;
+  --ink: #000000;
+  --soft: rgba(0, 0, 0, 0.4);
+  --faint: rgba(0, 0, 0, 0.25);
+  --line: rgba(0, 0, 0, 0.09);
+  --pill: rgba(234, 234, 234, 0.55);
+  --pill-hi: rgba(0, 0, 0, 0.07);
+  --card: #f6f6f6;
+  --font: "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --track: -0.045em;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0b0b; --ink: #f2f2f2; --soft: rgba(255,255,255,.45); --faint: rgba(255,255,255,.28);
+    --line: rgba(255,255,255,.1); --pill: rgba(60,60,60,.55); --pill-hi: rgba(255,255,255,.12); --card: #161616;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0b0b; --ink: #f2f2f2; --soft: rgba(255,255,255,.45); --faint: rgba(255,255,255,.28);
+  --line: rgba(255,255,255,.1); --pill: rgba(60,60,60,.55); --pill-hi: rgba(255,255,255,.12); --card: #161616;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 84px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.5; letter-spacing: var(--track); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p { margin: 0; font-weight: 400; }
+button { font: inherit; letter-spacing: inherit; color: inherit; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1280px; margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 900px) { .wrap { padding-left: max(48px, env(safe-area-inset-left, 0px)); padding-right: max(48px, env(safe-area-inset-right, 0px)); } }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.soft { color: var(--soft); }
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0; text-transform: uppercase; color: var(--soft); }
+
+/* ---------- pills ---------- */
+.pill { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid transparent; background: var(--pill); color: var(--ink); text-decoration: none; cursor: pointer; white-space: nowrap; font-size: 15px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: background .2s; }
+.pill:hover { background: var(--pill-hi); }
+.pill[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.pill.sm { height: 34px; padding: 0 13px; font-size: 14px; }
+.pill .ic { width: 14px; height: 14px; flex: none; }
+.pill[hidden] { display: none; }
+
+/* ---------- nav ---------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+.nav { position: fixed; z-index: 20; top: calc(16px + env(safe-area-inset-top, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); display: flex; justify-content: space-between; gap: 8px; pointer-events: none; }
+.nav > div { display: flex; gap: 6px; pointer-events: auto; }
+@media (max-width: 560px) { .nav .hide-s { display: none; } }
+
+.menu { position: fixed; z-index: 25; inset: 0; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); display: flex; justify-content: flex-end; padding: calc(72px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); }
+.menu[hidden] { display: none; }
+.menu .box { width: min(440px, 100%); background: var(--bg); border-radius: 18px; padding: 10px 22px 18px; box-shadow: 0 20px 60px rgba(0,0,0,.12); max-height: 100%; overflow: auto; align-self: flex-start; }
+.menu a { display: grid; grid-template-columns: 74px 1fr 16px; gap: 6px; padding: 10px 0; text-decoration: none; color: var(--faint); border-top: 1px solid var(--line); font-size: 17px; transition: color .15s; align-items: baseline; }
+.menu a:first-child { border-top: 0; }
+.menu a span { font-size: 13px; }
+.menu a:hover, .menu a[aria-current="true"] { color: var(--ink); }
+
+/* ---------- cover ---------- */
+.cover { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; display: grid; place-items: center; text-align: center; }
+.trail { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.trail img { position: absolute; width: var(--w, 220px); height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; transform: translate(-50%, -50%) scale(.3); transition: transform .9s cubic-bezier(.16,1,.3,1), left 1s cubic-bezier(.16,1,.3,1), top 1s cubic-bezier(.16,1,.3,1), opacity .7s ease; box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+.trail img.in { transform: translate(-50%, -50%) scale(1); }
+.trail img.out { opacity: 0; transform: translate(-50%, -50%) scale(.9); }
+.cover .c { position: relative; padding: 0 20px; display: grid; justify-items: center; gap: 22px; pointer-events: none; }
+.cover .c > * { pointer-events: auto; }
+.cover .k { font-size: 15px; color: #fff; opacity: .55; mix-blend-mode: difference; }
+.cover h1 { color: #fff; mix-blend-mode: difference; font-size: clamp(40px, 6.4vw, 92px); line-height: 1.04; letter-spacing: -0.055em; max-width: 15ch; text-wrap: balance; }
+.cover .cta { height: 46px; padding: 0 20px; font-size: 16px; background: var(--pill-hi); }
+.cover .cta:hover { background: var(--ink); color: var(--bg); }
+.cover .hint { position: absolute; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 2; font-size: 13px; color: var(--soft); white-space: nowrap; }
+.news { position: absolute; z-index: 3; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: min(340px, calc(100% - 32px)); background: color-mix(in srgb, var(--card) 88%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 14px; padding: 14px; text-align: left; display: grid; gap: 10px; }
+.news[hidden] { display: none; }
+.news .h { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--soft); }
+.news .h button { background: none; border: 0; cursor: pointer; color: var(--soft); font-size: 16px; line-height: 1; padding: 2px 4px; }
+.news .r { display: grid; grid-template-columns: 52px 1fr; gap: 12px; }
+.news .r img { width: 52px; height: 52px; object-fit: cover; border-radius: 6px; }
+.news b { font-weight: 400; font-size: 15.5px; display: block; }
+.news p { font-size: 13px; color: var(--soft); line-height: 1.35; }
+.news a { font-size: 13px; color: var(--soft); text-decoration: none; }
+.news a:hover { color: var(--ink); }
+@media (max-width: 640px) { .news { display: none; } .cover .hint { display: none; } }
+@media (hover: none) { .cover .hint { display: none; } }
+@media (max-width: 760px) {
+  .pill.sm { height: 38px; }
+  .swipe { display: block; margin-top: 10px; font-size: 13px; color: var(--soft); }
+  .cover h1 { font-size: clamp(36px, 10.5vw, 56px); }
+  .cover .k { text-wrap: balance; max-width: 30ch; }
+}
+.swipe { display: none; }
+
+/* ---------- index ---------- */
+.index { padding: 120px 0 80px; }
+.index .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 40px; }
+.index h2 { font-size: clamp(32px, 4vw, 56px); line-height: 1.05; letter-spacing: -0.05em; max-width: 14ch; }
+.index p.lead { margin-top: 18px; font-size: 18px; color: var(--soft); max-width: 40ch; }
+.chap a { display: grid; grid-template-columns: 110px minmax(0, 1fr) 20px; gap: 10px; padding: 9px 0; text-decoration: none; color: var(--faint); font-size: clamp(20px, 2.2vw, 28px); line-height: 1.2; transition: color .15s; align-items: baseline; }
+.chap a span { font-size: 14px; }
+.chap a:hover { color: var(--ink); }
+@media (max-width: 860px) { .index .grid { grid-template-columns: minmax(0, 1fr); } .chap a { grid-template-columns: 84px minmax(0, 1fr) 16px; } }
+
+/* ---------- chapters ---------- */
+.ch { padding: 96px 0; border-top: 1px solid var(--line); }
+.ch-h { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 16px 40px; margin-bottom: 48px; }
+.ch-h .n { font-size: 15px; color: var(--soft); padding-top: 10px; }
+.ch-h h2 { font-size: clamp(36px, 5vw, 68px); line-height: 1.02; letter-spacing: -0.055em; max-width: 16ch; text-wrap: balance; }
+.ch-h p { grid-column: 2; font-size: 18px; color: var(--soft); max-width: 52ch; }
+.ch-b { margin-left: 240px; }
+@media (max-width: 860px) { .ch { padding: 64px 0; } .ch-h { grid-template-columns: minmax(0, 1fr); } .ch-h p { grid-column: 1; } .ch-b { margin-left: 0; } }
+
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.fact { background: var(--card); border-radius: 14px; padding: 18px; display: grid; gap: 6px; align-content: start; }
+.fact .v { font-size: clamp(26px, 2.8vw, 38px); letter-spacing: -0.05em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.fact .v small { font-size: 15px; color: var(--soft); margin-left: 4px; letter-spacing: var(--track); }
+.fact .s { font-size: 14px; color: var(--soft); }
+@media (max-width: 860px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.list > div { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 12px 32px; padding: 18px 0; border-top: 1px solid var(--line); }
+.list > div:last-child { border-bottom: 1px solid var(--line); }
+.list h3 { font-size: 20px; letter-spacing: -0.035em; }
+.list p { color: var(--soft); font-size: 16px; max-width: 60ch; }
+.list p strong { color: var(--ink); font-weight: 400; }
+@media (max-width: 760px) { .list > div { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; align-items: center; }
+.pills .sum { margin-left: auto; font-size: 14px; color: var(--soft); }
+@media (max-width: 760px) { .pills .sum { margin-left: 0; width: 100%; } }
+
+/* deliverables */
+.dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.dl[hidden] { display: none; }
+.dl details { border-top: 1px solid var(--line); }
+.dl summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 70px minmax(0, 1fr) 20px; gap: 8px; padding: 16px 0; align-items: baseline; }
+.dl summary::-webkit-details-marker { display: none; }
+.dl summary .no { font-size: 14px; color: var(--faint); font-variant-numeric: tabular-nums; }
+.dl summary h3 { font-size: 20px; letter-spacing: -0.035em; }
+.dl summary .vol { display: block; font-size: 14px; color: var(--soft); margin-top: 2px; letter-spacing: var(--track); }
+.dl summary .pm { color: var(--soft); transition: transform .2s; text-align: right; }
+.dl details[open] summary .pm { transform: rotate(45deg); color: var(--ink); }
+.dl .more { padding: 0 0 18px 78px; color: var(--soft); font-size: 15.5px; max-width: 56ch; }
+.dl .more p + p { margin-top: 6px; font-size: 14px; }
+@media (max-width: 760px) { .dl { grid-template-columns: minmax(0, 1fr); } .dl .more { padding-left: 0; } .dl summary { grid-template-columns: 48px minmax(0, 1fr) 20px; } }
+
+/* sitemap */
+.map { background: var(--card); border-radius: 18px; padding: 28px; overflow-x: auto; }
+.tree { min-width: 920px; }
+.root { display: flex; justify-content: center; margin-bottom: 26px; position: relative; }
+.root::after { content: ""; position: absolute; bottom: -26px; left: 50%; width: 1px; height: 26px; background: var(--faint); }
+.branches { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px; padding-top: 22px; border-top: 1px solid var(--faint); }
+.branch { display: grid; gap: 6px; align-content: start; position: relative; }
+.branch::before { content: ""; position: absolute; top: -22px; left: 50%; width: 1px; height: 22px; background: var(--faint); }
+.node { background: var(--bg); border-radius: 10px; padding: 8px 10px; font-size: 13.5px; transition: opacity .25s, background .25s, color .25s; }
+.node i { display: block; font-style: normal; font-size: 11.5px; color: var(--soft); }
+.node.main { font-size: 14.5px; }
+.node.sub { margin-left: 10px; font-size: 13px; }
+.tree.f1 .node.r2, .tree.f2 .node.r1 { opacity: .25; }
+.tree.f1 .node.r1, .tree.f2 .node.r2 { background: var(--ink); color: var(--bg); }
+.tree.f1 .node.r1 i, .tree.f2 .node.r2 i { color: var(--bg); opacity: .6; }
+.note { font-size: 14.5px; color: var(--soft); margin-top: 16px; max-width: 70ch; }
+.rel2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.relc { background: var(--card); border-radius: 18px; padding: 22px; }
+.relc h3 { font-size: 26px; letter-spacing: -0.045em; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.relc h3 span { font-size: 14px; color: var(--soft); letter-spacing: var(--track); }
+.relc ul { list-style: none; margin: 14px 0 0; padding: 0; }
+.relc li { border-top: 1px solid var(--line); padding: 10px 0; font-size: 15px; display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 12px; }
+.relc li span { color: var(--soft); }
+@media (max-width: 760px) { .rel2 { grid-template-columns: minmax(0, 1fr); } .relc li { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+
+/* timeline */
+.tl { background: var(--card); border-radius: 18px; padding: 22px 22px 16px; overflow-x: auto; position: relative; }
+.tl-in { min-width: 940px; }
+.trow, .tax, .twk { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: center; }
+.trow { height: 34px; transition: opacity .2s; }
+.trow.dim { opacity: .15; }
+.tax { height: 34px; }
+.twk { height: 22px; }
+.tlbl { font-size: 14px; padding-right: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.trow.ms .tlbl { color: var(--ink); }
+.trow:not(.ms) .tlbl { color: var(--soft); }
+.ttrack { position: relative; height: 100%; background: linear-gradient(90deg, var(--line) 0 1px, transparent 1px) 0 0 / calc(100% / 17) 100% repeat-x; }
+.twk .ttrack { display: grid; grid-template-columns: repeat(17, minmax(0, 1fr)); background-image: none; }
+.twk .ttrack span, .twk .tlbl { font-family: var(--mono); font-size: 10.5px; color: var(--faint); text-align: center; letter-spacing: 0; }
+.twk .tlbl { text-align: left; text-transform: uppercase; }
+.tbar { position: absolute; top: 50%; height: 16px; transform: translateY(-50%); border-radius: 999px; border: 0; padding: 0; cursor: default; }
+.tbar.brand { background: var(--ink); }
+.tbar.web { background: var(--soft); }
+.tbar.rel { background: var(--ink); box-shadow: inset 0 0 0 4px var(--card); outline: 1px solid var(--ink); outline-offset: -1px; }
+.tbar.pause { background: repeating-linear-gradient(135deg, var(--faint) 0 3px, transparent 3px 7px); }
+.tbar:hover, .tbar:focus-visible { box-shadow: 0 0 0 3px var(--card), 0 0 0 4px var(--ink); }
+.tdia { position: absolute; top: 50%; width: 13px; height: 13px; transform: translate(-50%, -50%) rotate(45deg); background: var(--ink); border: 0; padding: 0; cursor: default; }
+.tdia.acc { width: 16px; height: 16px; }
+.tlab { position: absolute; top: 50%; transform: translateY(-50%); font-size: 12.5px; color: var(--soft); white-space: nowrap; padding-left: 8px; pointer-events: none; font-variant-numeric: tabular-nums; }
+.tlab.l { transform: translate(-100%, -50%); padding-left: 0; padding-right: 8px; }
+.tick { position: absolute; bottom: 8px; transform: translateX(-50%); font-size: 12.5px; color: var(--soft); white-space: nowrap; }
+.tip { position: absolute; z-index: 3; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 13px; padding: 8px 11px; border-radius: 10px; max-width: 280px; transform: translate(-50%, calc(-100% - 10px)); }
+.tip[hidden] { display: none; }
+.miles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.mile { background: var(--card); border-radius: 14px; padding: 16px; }
+.mile .d { font-size: 26px; letter-spacing: -0.05em; }
+.mile p { font-size: 14px; color: var(--soft); }
+.mile.dark { background: var(--ink); color: var(--bg); }
+.mile.dark p { color: var(--bg); opacity: .65; }
+@media (max-width: 900px) { .miles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* team */
+.team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.team.two { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+.mem { background: var(--card); border-radius: 18px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.mem .r { font-size: 14px; color: var(--soft); }
+.mem h3 { font-size: 28px; letter-spacing: -0.05em; }
+.mem p { color: var(--soft); font-size: 15.5px; }
+.mem.dark { background: var(--ink); color: var(--bg); }
+.mem.dark .r, .mem.dark p { color: var(--bg); opacity: .65; }
+.lanes { margin-top: 40px; display: grid; grid-template-columns: 140px minmax(0, 1fr); }
+.lanes > * { padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; }
+.lane { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.lane span { border-radius: 999px; padding: 6px 12px; font-size: 13.5px; background: var(--card); color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lane span.on { background: var(--ink); color: var(--bg); }
+@media (max-width: 860px) { .team, .team.two { grid-template-columns: minmax(0, 1fr); } .lanes { grid-template-columns: minmax(0, 1fr); } .lanes .who { border-top: 0; padding-bottom: 0; } .lane { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* about + gallery */
+.about { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; }
+.about .big { font-size: clamp(26px, 3vw, 40px); line-height: 1.12; letter-spacing: -0.05em; text-wrap: balance; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+.tags span { background: var(--pill); border-radius: 999px; padding: 6px 13px; font-size: 14px; }
+.feat { position: relative; margin: 48px 0 0; border-radius: 10px; overflow: hidden; background: var(--card); }
+.feat video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.feat .cap { position: absolute; left: 10px; bottom: 10px; background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(10px); border-radius: 999px; padding: 5px 11px; font-size: 13px; }
+.feat .cap span { color: var(--soft); margin-left: 4px; }
+.gal { columns: 3 260px; column-gap: 8px; margin-top: 8px; }
+.gal button { display: block; width: 100%; border: 0; padding: 0; margin: 0 0 8px; background: var(--card); border-radius: 10px; overflow: hidden; cursor: zoom-in; position: relative; break-inside: avoid; }
+.gal img { width: 100%; height: auto; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.gal button:hover { filter: brightness(1.04); }
+.gal .cap { position: absolute; left: 10px; bottom: 10px; background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(10px); border-radius: 999px; padding: 5px 11px; font-size: 13px; }
+.gal .cap span { color: var(--soft); margin-left: 4px; }
+@media (max-width: 860px) { .about { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
+.lb { position: fixed; inset: 0; z-index: 40; background: var(--bg); display: grid; grid-template-rows: 1fr auto; padding: calc(70px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb[hidden] { display: none; }
+.lb .img { min-height: 0; display: grid; place-items: center; }
+.lb img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 10px; }
+.lb .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 14px; font-size: 16px; }
+
+/* money */
+.money { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 8px; }
+.tot { background: var(--ink); color: var(--bg); border-radius: 18px; padding: 26px; display: grid; gap: 18px; align-content: space-between; }
+.tot .v { font-size: clamp(56px, 8vw, 112px); letter-spacing: -0.06em; line-height: .95; font-variant-numeric: tabular-nums; }
+.tot .v small { font-size: 18px; opacity: .6; letter-spacing: var(--track); margin-left: 6px; }
+.tot .b { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 10px 0; border-top: 1px solid rgba(127,127,127,.35); font-size: 16px; }
+.tot .b span:first-child { opacity: .75; }
+.tot .b small { display: block; font-size: 13px; opacity: .6; }
+.pay { background: var(--card); border-radius: 18px; padding: 22px; }
+.pay h3 { font-size: 20px; letter-spacing: -0.035em; margin-bottom: 8px; }
+.pr { display: grid; grid-template-columns: 64px minmax(0, 1fr) 80px; gap: 12px; align-items: center; padding: 11px 0; border-top: 1px solid var(--line); font-size: 15px; }
+.pr .dt { font-size: 13px; color: var(--soft); font-variant-numeric: tabular-nums; }
+.pr .amt { text-align: right; font-variant-numeric: tabular-nums; }
+.pr .cum { height: 3px; background: var(--line); border-radius: 999px; margin-top: 8px; overflow: hidden; }
+.pr .cum i { display: block; height: 100%; background: var(--ink); border-radius: 999px; }
+.pay .val { margin-top: 14px; font-size: 14px; color: var(--soft); }
+@media (max-width: 860px) { .money { grid-template-columns: minmax(0, 1fr); } }
+
+.conds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.cond { background: var(--card); border-radius: 18px; padding: 22px; }
+.cond h3 { font-size: 22px; letter-spacing: -0.04em; margin-bottom: 8px; }
+.cond ul { list-style: none; margin: 0; padding: 0; }
+.cond li { border-top: 1px solid var(--line); padding: 9px 0; font-size: 15px; color: var(--soft); }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 8px; counter-reset: s; }
+.step { counter-increment: s; border-top: 1px solid var(--ink); padding-top: 14px; }
+.step::before { content: "0" counter(s); font-size: 14px; color: var(--soft); display: block; margin-bottom: 18px; font-variant-numeric: tabular-nums; }
+.step h3 { font-size: 20px; letter-spacing: -0.035em; margin-bottom: 4px; }
+.step p { font-size: 15px; color: var(--soft); }
+@media (max-width: 860px) { .conds, .steps { grid-template-columns: minmax(0, 1fr); } }
+
+.end { padding: 120px 0 calc(40px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); text-align: center; }
+.end h2 { font-size: clamp(48px, 9vw, 140px); letter-spacing: -0.06em; line-height: .95; }
+.end .row { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: 32px; }
+.fine { margin-top: 96px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--soft); text-align: left; }
+.toast { position: fixed; z-index: 50; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 14px; }
+.toast[hidden] { display: none; }
+
+/* ---------- side bar (after the cover) ---------- */
+.side { display: none; }
+@media (min-width: 1000px) {
+  main > section:not(.cover), main > footer { padding-left: 240px; }
+  .side { display: flex; flex-direction: column; position: fixed; z-index: 15; top: 0; bottom: 0; left: 0; width: 240px; background: var(--bg); border-right: 1px solid var(--line);
+    padding: calc(26px + env(safe-area-inset-top, 0px)) 26px calc(22px + env(safe-area-inset-bottom, 0px)) max(26px, env(safe-area-inset-left, 0px));
+    transform: translateX(-101%); transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+  body.in .side { transform: none; }
+  .nav { transition: left .55s cubic-bezier(.2,.7,.2,1); }
+  body.in .nav { left: calc(240px + 16px); }
+}
+.s-name { font-size: 17px; color: var(--ink); text-decoration: none; letter-spacing: -0.04em; }
+.s-sub { font-size: 13px; color: var(--soft); margin-top: 2px; }
+.s-nav { margin-top: 36px; display: grid; gap: 2px; }
+.s-nav a { display: grid; grid-template-columns: 46px 1fr; font-size: 15px; color: var(--soft); text-decoration: none; padding: 4px 0; transition: color .15s; }
+.s-nav a span { font-family: var(--mono); font-size: 11px; letter-spacing: 0; padding-top: 4px; color: var(--faint); }
+.s-nav a:hover, .s-nav a[aria-current="true"] { color: var(--ink); }
+.s-nav a[aria-current="true"] span { color: var(--ink); }
+.s-bot { margin-top: auto; display: grid; gap: 14px; font-size: 13.5px; }
+.s-bot p { color: var(--soft); line-height: 1.35; }
+.s-cta { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); justify-self: start; padding-bottom: 2px; }
+.s-link { background: none; border: 0; padding: 0; cursor: pointer; color: var(--ink); justify-self: start; font-size: 13.5px; }
+.s-link[hidden] { display: none; }
+.s-meta { font-size: 12px; color: var(--soft); line-height: 1.4; }
+.s-meta i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); margin-right: 6px; vertical-align: 1px; }
+
+/* about: experience + focus */
+.cv > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15.5px; }
+.cv > div:last-child { border-bottom: 1px solid var(--line); }
+.cv b { font-weight: 400; }
+.cv small { display: block; color: var(--soft); font-size: 14px; }
+.cv .y { color: var(--soft); font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sub-h { font-size: 14px; color: var(--soft); margin: 36px 0 10px; }
+.focus { counter-reset: f; display: flex; flex-wrap: wrap; gap: 6px; }
+.focus span { counter-increment: f; background: var(--pill); border-radius: 999px; padding: 6px 13px 6px 10px; font-size: 14px; }
+.focus span::before { content: "0" counter(f); font-family: var(--mono); font-size: 11px; color: var(--soft); margin-right: 8px; letter-spacing: 0; }
+
+/* ---------- scroll transitions ----------
+   Driven by scroll position (CSS scroll timelines), so every element rests fully visible;
+   browsers without support simply show the page without motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .cover h1 .w { display: inline-block; animation: rise 1s cubic-bezier(.2,.7,.2,1) both; }
+  .cover h1 .w:nth-child(2) { animation-delay: .08s; }
+  @keyframes rise { from { transform: translateY(26px); } to { transform: none; } }
+
+  @supports (animation-timeline: view()) {
+    .cover .c > * { animation: coverOut linear both; animation-timeline: scroll(root); animation-range: 0 85vh; }
+    .cover .trail, .cover .news, .cover .hint { animation: fadeOut linear both; animation-timeline: scroll(root); animation-range: 0 60vh; }
+    @keyframes coverOut { to { opacity: 0; transform: translateY(-80px) scale(.97); filter: blur(4px); } }
+    @keyframes fadeOut { to { opacity: 0; } }
+
+    .index h2, .index .lead, .chap a,
+    .ch-h .n, .ch-h h2, .ch-h p,
+    .fact, .list > div, .dl details, .pills,
+    .map, .note, .relc, .tl, .mile,
+    .mem, .lanes > *, .about .big, .tags,
+    .tot, .pay, .cond, .step, .end h2, .end .row {
+      animation: rv linear both; animation-timeline: view(); animation-range: entry 0% entry 45%;
+    }
+    .ch-h h2, .index h2, .end h2 { animation-name: rvTitle; animation-range: entry 0% entry 60%; }
+    .gal button { animation: rvImg linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
+    .gal img { animation: zoomOut linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+    @keyframes rv { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+    @keyframes rvTitle { from { opacity: 0; transform: translateY(60px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+    @keyframes rvImg { from { opacity: 0; transform: translateY(60px) scale(.94); } to { opacity: 1; transform: none; } }
+    @keyframes zoomOut { from { transform: scale(1.12); } to { transform: scale(1); } }
+  }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@media (max-width: 760px) {
+  .tl { padding: 18px 16px 12px 0; }
+  .tl-in { min-width: 760px; }
+  .trow, .tax, .twk { grid-template-columns: 128px minmax(0, 1fr); }
+  .tlbl { position: sticky; left: 0; z-index: 2; background: var(--card); padding: 0 10px 0 16px; align-self: stretch; display: flex; align-items: center; font-size: 12.5px; line-height: 1.15; white-space: normal; }
+  .twk .tlbl { font-size: 10px; }
+}
+@media (min-width: 1000px) and (max-width: 1439px) {
+  .ch-h { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .ch-h p { grid-column: 1; }
+  .ch-h .n { padding-top: 0; }
+  .ch-b { margin-left: 0; }
+  .wrap { padding-left: 40px; padding-right: 40px; }
+  .about .big { font-size: clamp(26px, 2.6vw, 34px); }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div><a class="pill" href="#top">Olaia Irigoyen</a><span class="pill hide-s" aria-hidden="true" style="cursor:default">Propuesta · Brand + Website</span></div>
+  <div><span class="pill hide-s" style="cursor:default">Confidencial</span><button class="pill" type="button" id="pdf" hidden>PDF <svg class="ic" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M7 2v8M3.5 6.5 7 10l3.5-3.5M2.5 12h9"/></svg></button><button class="pill" type="button" id="menuBtn" aria-expanded="false"><svg class="ic" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h10M2 7h10M2 10h10"/></svg>Capítulos</button></div>
+</header>
+
+<div class="menu" id="menu" hidden><nav class="box" aria-label="Capítulos" id="menuList"></nav></div>
+
+<aside class="side" aria-label="Navegación de la propuesta">
+  <a class="s-name" href="#top">Olaia Irigoyen</a>
+  <span class="s-sub">Propuesta · Brand + Website</span>
+  <nav class="s-nav" id="sideList" aria-label="Capítulos"></nav>
+  <div class="s-bot">
+    <p>¿Dudas sobre la propuesta?<br>Hablemos.</p>
+    <a class="s-cta" href="#contacto">Escribir a Olaia ↗</a>
+    <button class="s-link" type="button" id="pdf2" hidden>Descargar PDF ↓</button>
+    <span class="s-meta"><i></i>Confidencial</span>
+    <span class="s-meta">Pamplona, España<br>23 de octubre de 2026</span>
+  </div>
+</aside>
+
+<main id="top">
+  <section class="cover" id="cover" aria-label="Portada">
+    <div class="trail" id="trail" aria-hidden="true"></div>
+    <div class="c">
+      <span class="k">Propuesta para el equipo de proyecto · 23 de octubre de 2026</span>
+      <h1><span class="w">Una marca y una web,</span> <span class="w">construidas en paralelo</span></h1>
+      <a class="pill cta" href="#indice">Entrar a la propuesta <svg class="ic" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 10 10 4M5 4h5v5"/></svg></a>
+    </div>
+    <span class="hint" id="hint">Mueve el cursor para ver trabajos de Olaia</span>
+    <aside class="news" id="news" aria-label="Resumen">
+      <div class="h"><span>Resumen</span><button type="button" id="newsX" aria-label="Cerrar resumen">×</button></div>
+      <div class="r"><img src="img/talentl-web.jpg" alt=""><div><b>7.950 € + IVA, en tres bloques</b><p>Brand el 11 de diciembre, Release 1 el 11 de enero y Release 2 a finales de febrero.</p></div></div>
+      <a href="#inversion">Ver inversión ↗</a>
+    </aside>
+  </section>
+
+  <section class="index" id="indice">
+    <div class="wrap grid">
+      <div>
+        <h2>Refinar lo que existe. Construir un sistema.</h2>
+        <p class="lead">Para una empresa industrial B2B que quiere evolucionar su marca y llevarla a una web que presente su oferta y convierta en solicitudes de cotización.</p>
+      </div>
+      <nav class="chap" aria-label="Índice" id="chapList"></nav>
+    </div>
+  </section>
+
+  <section class="ch" id="enfoque" data-t="Enfoque">
+    <div class="wrap">
+      <div class="ch-h"><span class="n">(001)</span><h2>Cómo lo planteamos</h2><p>Hay una estrategia y un camino visual elegido. El trabajo es cerrarlo con criterio y llevarlo a la web sin perder tiempo.</p></div>
+      <div class="ch-b">
+        <div class="facts">
+          <div class="fact"><span class="soft" style="font-size:14px">Inversión</span><span class="v">7.950 €<small>+ IVA</small></span><span class="s">Precio cerrado</span></div>
+          <div class="fact"><span class="soft" style="font-size:14px">Brand</span><span class="v">11 dic</span><span class="s">Sistema completo</span></div>
+          <div class="fact"><span class="soft" style="font-size:14px">Release 1</span><span class="v">11 ene</span><span class="s">Clientes y prospectos</span></div>
+          <div class="fact"><span class="soft" style="font-size:14px">Release 2</span><span class="v">Fin feb</span><span class="s">A acordar con el cliente</span></div>
+        </div>
+        <div class="list" style="margin-top:48px">
+          <div><h3>Partir de lo que existe</h3><p>Las rutas visuales trabajan sobre el camino elegido, con foco tipográfico y <strong>criterios acordados al inicio</strong>, para decidir con argumentos de negocio y no por gusto.</p></div>
+          <div><h3>Marca y web en paralelo</h3><p>Con logo, tipografía y color aprobados arranca la web, que se convierte en <strong>el banco de pruebas de la marca</strong>: ver el sistema en páginas reales dice pronto qué funciona.</p></div>
+          <div><h3>Dos releases</h3><p>Primero lo comercial para clientes y prospectos, el 11 de enero. Después el resto de audiencias y contenidos, a finales de febrero.</p></div>
+          <div><h3>En mancuerna</h3><p>Una célula de proyecto con dirección, marca y web. El copy se <strong>cocrea</strong>: se diseña con contenido real, nunca con lorem ipsum.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" id="objetivos" data-t="Objetivos">
+    <div class="wrap">
+      <div class="ch-h"><span class="n">(002)</span><h2>Objetivos</h2><p>Punto de partida. Se confirman en la sesión de arranque.</p></div>
+      <div class="ch-b list">
+        <div><h3>La marca</h3><p>Evolucionar sin perder lo construido y quedar como un sistema coherente, documentado y listo para usar por el equipo y sus proveedores.</p></div>
+        <div><h3>La web</h3><p>Presentar la oferta con claridad, orientar a cada audiencia y convertir visitas en solicitudes de cotización, con un equipo autónomo para actualizarla.</p></div>
+        <div><h3>El proyecto</h3><p>Llegar a los tres hitos con decisiones explicadas desde la estrategia y sin bloqueos entre frentes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" id="entregables" data-t="Entregables">
+    <div class="wrap">
+      <div class="ch-h"><span class="n">(003)</span><h2>Qué se entrega</h2><p>Cada pieza con su volumen y formato. Abre una para ver el detalle.</p></div>
+      <div class="ch-b">
+        <div class="pills" role="group" aria-label="Frente">
+          <button class="pill sm" type="button" id="tabBrand" aria-pressed="true">Brand · 12</button>
+          <button class="pill sm" type="button" id="tabWeb" aria-pressed="false">Website · 8</button>
+        </div>
+        <div class="dl" id="gBrand"></div>
+        <div class="dl" id="gWeb" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" id="releases" data-t="Releases">
+    <div class="wrap">
+      <div class="ch-h"><span class="n">(004)</span><h2>Qué entra en cada release</h2><p>Mapa inicial a partir del brief, con margen holgado. La distribución final se cierra con el cliente en la fase de arquitectura.</p></div>
+      <div class="ch-b">
+        <div class="pills" role="group" aria-label="Ver release">
+          <button class="pill sm" type="button" data-f="0" aria-pressed="true">Todo</button>
+          <button class="pill sm" type="button" data-f="1" aria-pressed="false">Release 1 · 11 ene</button>
+          <button class="pill sm" type="button" data-f="2" aria-pressed="false">Release 2 · fin feb</button>
+          <span class="sum">R1: 9 páginas · R2: unas 20 · ~12 plantillas únicas</span>
+        </div>
+        <div class="map"><div class="tree" id="tree"></div></div><p class="swipe">Desliza para ver el mapa completo →</p>
+        <p class="note">Una plantilla se diseña una vez y sirve para todas sus páginas, con variantes de fondo, color y módulos que aportan dinamismo. Una ficha multinivel o un artículo del blog cuentan como una sola plantilla. El número de páginas es orientativo; el alcance se mide en plantillas únicas.</p>
+        <div class="rel2" style="margin-top:24px">
+          <div class="relc"><h3>Release 1 <span>11 ene · clientes y prospectos</span></h3><ul><li><b style="font-weight:400">Home</b><span>Presenta la empresa y orienta a cada audiencia.</span></li><li>About Us<span>Página principal.</span></li><li>Oferta<span>Portada y unas 4 páginas de detalle.</span></li><li>Contacto y Request a Quote<span>Conectados al CRM, con el flujo probado.</span></li><li>Navegación y footer<span>Accesos rápidos, mapa, certificaciones, redes y legales.</span></li></ul></div>
+          <div class="relc"><h3>Release 2 <span>fin feb · resto de audiencias</span></h3><ul><li>Ajustes de la R1<span>Cambios a partir del uso real y el feedback.</span></li><li>About · subsecciones<span>Historia, compromiso, instalaciones y ubicaciones.</span></li><li>Páginas independientes<span>Entre 6 y 8, con vídeo, certificaciones y descargables.</span></li><li>Contenido multinivel<span>3–5 categorías con fichas, recursos y glosario.</span></li><li>Blog / News<span>Listado y detalle en el CMS, 3 publicaciones de ejemplo.</span></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" id="calendario" data-t="Calendario">
+    <div class="wrap">
+      <div class="ch-h"><span class="n">(005)</span><h2>De noviembre a febrero</h2><p>Arranque el 2 de noviembre. En Navidad solo se paran los festivos. Pasa el cursor o toca cada barra para ver el detalle.</p></div>
+      <div class="pills" role="group" aria-label="Filtrar calendario">
+        <button class="pill sm" type="button" data-t="all" aria-pressed="true">Todo</button>
+        <button class="pill sm" type="button" data-t="brand" aria-pressed="false">Brand</button>
+        <button class="pill sm" type="button" data-t="web" aria-pressed="false">Diseño web</button>
+        <button class="pill sm" type="button" data-t="rel" aria-pressed="false">Releases</button>
+      </div>
+      <div class="tl" id="tl"><div class="tl-in" id="tlIn"></div><div class="tip" id="tip" hidden></div></div><p class="swipe">Desliza para ver todas las semanas →</p>
+      <div class="miles">
+        <div class="mile"><div class="d">17 nov</div><p>Ruta visual elegida, tras presentarlas el 12.</p></div>
+        <div class="mile"><div class="d">27 nov</div><p>Logo, tipografía y color aprobados.</p></div>
+        <div class="mile"><div class="d">11 dic</div><p>Brand entregada.</p></div>
+        <div class="mile dark"><div class="d">11 ene</div><p>Release 1 publicada.</p></div>
+        <div class="mile dark"><div class="d">Fin feb</div><p>Release 2 publicada, fecha a acordar.</p></div>
+      </div>
+      <p class="note">Diez hitos con dos rondas de revisión cada uno. Las fechas asumen que cada hito se valida en un plazo de 2–3 días hábiles, con feedback consolidado, y que el copy de cada release se entrega a tiempo. Si los plazos de validación se amplían, el calendario se reajusta de mutuo acuerdo.</p>
+    </div>
+  </section>
+
+  <section class="ch" id="equipo" data-t="Cómo trabajaremos">
+    <div class="wrap">
+      <div class="ch-h"><span class="n">(006)</span><h2>Cómo trabajaremos</h2><p>Un equipo pequeño y cercano, con marca y web avanzando a la vez sin pisarse.</p></div>
+      <div class="ch-b">
+        <div class="team two">
+          <div class="mem dark"><span class="r">Diseño de marca y web</span><h3>Esamesa Studio</h3><p>Dirección visual de marca y web, de las primeras rutas al desarrollo en Framer. Un solo punto de contacto para todo el diseño, que presenta cada hito.</p></div>
+          <div class="mem"><span class="r">Estrategia</span><h3>Equipo de dirección</h3><p>Refinamiento estratégico, prioridades, narrativa y copy, y relación con el cliente.</p></div>
+        </div>
+        <div class="lanes" aria-label="Frentes en paralelo">
+          <div class="who">Marca</div><div class="lane"><span class="on">Rutas y logo</span><span class="on">Sistema</span><span class="on">Aplicaciones</span><span class="on">Brandbook</span></div>
+          <div class="who">Web</div><div class="lane"><span>Arquitectura</span><span>Wireframes</span><span class="on">Release 1</span><span class="on">Release 2</span></div>
+          <div class="who">Estrategia</div><div class="lane"><span class="on">Brief y criterios</span><span>Revisión</span><span class="on">Copy R1</span><span class="on">Copy R2</span></div>
+        </div>
+        <div class="list" style="margin-top:48px">
+          <div><h3>Sesión semanal</h3><p>Planificación y revisión con todo el equipo, y avances compartidos entre medias para anticipar bloqueos.</p></div>
+          <div><h3>Dos rondas por hito</h3><p>Feedback reunido en un solo documento, en cada uno de los diez hitos.</p></div>
+          <div><h3>Desde la estrategia</h3><p>Cada decisión explica cómo responde a la marca, al negocio y a sus audiencias.</p></div>
+          <div><h3>IA con criterio</h3><p>Para explorar y acelerar; los resultados se transforman en un lenguaje propio.</p></div>
+          <div><h3>Idiomas y archivos</h3><p>Coordinación en español; materiales para el cliente y web en inglés. Todo en Figma, con acceso desde el primer día.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" id="portfolio" data-t="Portfolio">
+    <div class="wrap">
+      <div class="ch-h"><span class="n">(007)</span><h2>Sobre Olaia</h2><p>Identidad, producto digital y web. Haz clic en una imagen para verla grande.</p></div>
+      <div class="ch-b">
+        <div class="about">
+          <div>
+            <p class="big">Diseñadora senior de producto y marca, y cofundadora de Esamesa Studio. Desde Pamplona, para equipos de todo el mundo.</p>
+            <p class="sub-h">Especialidades</p>
+            <div class="focus"><span>Product Design</span><span>B2B SaaS</span><span>UX/UI</span><span>Design Systems</span><span>Brand &amp; Web</span><span>No-code</span><span>Flujos creativos con IA</span></div>
+          </div>
+          <div>
+            <p class="sub-h" style="margin-top:0">Experiencia</p>
+            <div class="cv">
+              <div><span><b>Esamesa Studio</b><small>Diseñadora de producto freelance y cofundadora</small></span><span class="y">2025 – hoy</span></div>
+              <div><span><b>Mitimiti Studio</b><small>Senior Product Designer</small></span><span class="y">2026 – hoy</span></div>
+              <div><span><b>Capchase</b><small>Senior Product Designer</small></span><span class="y">2021 – 2025</span></div>
+              <div><span><b>Propelland</b><small>Product Designer</small></span><span class="y">2018 – 2021</span></div>
+              <div><span><b>Docencia</b><small>Ironhack (UX/UI) y Creanavarra (Design Marketing)</small></span><span class="y">2017 – 2019</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="sub-h">Ha trabajado con</p>
+        <div class="tags" style="margin-top:0"><span>Coca-Cola</span><span>Capchase</span><span>Indra</span><span>Baleària</span><span>TADIG</span><span>Colectin</span><span>TalentL</span><span>Jackrom</span><span>Vype</span><span>Emotionhack</span></div>
+      </div>
+      <figure class="feat"><video src="vid/colectin-web.mp4" poster="vid/colectin-web-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Colectin, marketplace: recorrido por la web"></video><figcaption class="cap">Colectin<span>Marketplace · producto y web</span></figcaption></figure>
+      <div class="gal" id="gal"></div>
+    </div>
+  </section>
+
+  <section class="ch" id="condiciones" data-t="Condiciones">
+    <div class="wrap">
+      <div class="ch-h"><span class="n">(008)</span><h2>Condiciones y siguientes pasos</h2><p>Cualquier cambio de alcance se presupuesta y se acuerda antes de hacerlo.</p></div>
+      <div class="ch-b">
+        <div class="conds">
+          <div class="cond"><h3>Incluye</h3><ul><li>Lo descrito en entregables y releases.</li><li>Dos rondas en cada uno de los diez hitos.</li><li>Copy cocreado con dirección.</li><li>30 días de incidencias tras cada release.</li><li>Archivos finales y derechos de uso, al completar el pago.</li></ul></div>
+          <div class="cond"><h3>Costes aparte</h3><ul><li>Licencias tipográficas y bancos de imagen.</li><li>Plan de Framer, dominio y hosting.</li><li>CRM e integraciones de pago.</li><li>Producción de foto y vídeo.</li><li>Mantenimiento posterior, opcional.</li></ul></div>
+          <div class="cond"><h3>Fuera de alcance</h3><ul><li>Una dirección conceptual nueva tras elegir ruta.</li><li>Plantillas únicas o piezas por encima de lo acordado.</li><li>Diseño de producción de las piezas mostradas como mockup: textil, papelería o editorial.</li><li>Versiones en otros idiomas.</li><li>Carga más allá de la inicial acordada.</li></ul></div>
+        </div>
+        <div class="steps" style="margin-top:56px">
+          <div class="step"><h3>Revisión conjunta</h3><p>Repasar la propuesta con dirección y ajustar alcance y releases.</p></div>
+          <div class="step"><h3>Confirmación</h3><p>Aprobación por email y factura de inicio.</p></div>
+          <div class="step"><h3>Material de partida</h3><p>Estrategia, exploraciones previas, CRM y accesos.</p></div>
+          <div class="step"><h3>Arranque · 2 nov</h3><p>Sesión para fijar criterios y prioridades.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" id="inversion" data-t="Inversión">
+    <div class="wrap">
+      <div class="ch-h"><span class="n">(009)</span><h2>Inversión</h2><p>Precio cerrado por bloque para el alcance descrito. Importes en euros.</p></div>
+      <div class="ch-b money">
+        <div class="tot">
+          <div><span style="opacity:.6;font-size:14px">Inversión total</span><div class="v">7.950 €<small>+ IVA</small></div></div>
+          <div>
+            <div class="b"><span>Brand<small>Incluye el brandbook interactivo · 11 dic</small></span><span>3.320 €</span></div>
+            <div class="b"><span>Website · Release 1<small>Publicación el 11 de enero</small></span><span>2.940 €</span></div>
+            <div class="b"><span>Website · Release 2<small>Finales de febrero</small></span><span>1.690 €</span></div>
+          </div>
+        </div>
+        <div class="pay"><h3>Forma de pago</h3><p class="soft" style="font-size:15.5px">Cada bloque se factura una parte al inicio y otra a la entrega. El reparto exacto se acuerda según los bloques que se contraten.</p><p class="val">Propuesta válida durante 30 días, hasta el 22 de noviembre de 2026.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="end" id="contacto">
+    <div class="wrap">
+      <h2>Hablemos</h2>
+      <div class="row"><span class="pill" style="cursor:default" id="mail">olaiairigoien@gmail.com</span><button class="pill" type="button" id="copyMail">Copiar email</button><a class="pill" href="#top">Volver arriba ↑</a></div>
+      <div class="fine"><span>Documento confidencial, preparado para el equipo de proyecto. No compartir fuera de él sin autorización.</span><span>Hecho con cariño por Olaia Irigoyen · 2026</span></div>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-label="Imagen del portfolio">
+  <div class="img"><img id="lbImg" alt=""></div>
+  <div class="row"><span id="lbT"></span><div style="display:flex;gap:6px"><button class="pill sm" type="button" id="lbPrev" aria-label="Anterior">←</button><button class="pill sm" type="button" id="lbNext" aria-label="Siguiente">→</button><button class="pill sm" type="button" id="lbClose">Cerrar</button></div></div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function () {
+  function $(id) { return document.getElementById(id); }
+  var toastT;
+  function toast(m) { var t = $('toast'); t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { t.hidden = true; }, 3000); }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------- images ----------
+  var G = [
+    ['talentl-web', 'TalentL', 'Diseño y desarrollo web en Framer'], ['colectin-marca', 'Colectin', 'Identidad visual'], ['tadig-dashboard', 'TADIG', 'Rediseño UX/UI y design system'],
+    ['balearia-app', 'Baleària', 'UX/UI de app'], ['jackrom-web', 'Jackrom', 'Diseño web y dirección visual'], ['capchase-web', 'Capchase', 'Web · Senior Product Designer'],
+    ['cocacola-app', 'Coca-Cola', 'App de personalización'], ['vype-app', 'Vype', 'UX/UI de app'], ['indra-campana', 'Indra', 'Campaña de captación'],
+    ['colectin-web', 'Colectin', 'Marketplace · producto y web'], ['colectin-redes', 'Colectin', 'Piezas para redes'], ['capchase-producto', 'Capchase', 'Producto · Senior Product Designer']
+  ];
+  G.forEach(function (g) { var i = new Image(); i.src = 'img/' + g[0] + '.jpg'; });
+
+  // ---------- cover trail ----------
+  var cover = $('cover'), trail = $('trail'), ti = 0, lx = -999, ly = -999, live = [], idleT = null, auto = null;
+  // Each image is born small at the previous point, then grows and glides to the cursor with a slight lag.
+  function spawn(x, y, fx, fy) {
+    var cw = cover.clientWidth, base = cw < 640 ? 92 : cw < 1000 ? 150 : 170, w = base + Math.round(Math.random() * base * .5);
+    var g = G[ti++ % G.length], im = document.createElement('img');
+    im.src = 'img/' + g[0] + '.jpg'; im.alt = '';
+    im.style.left = (fx == null ? x : fx) + 'px'; im.style.top = (fy == null ? y : fy) + 'px';
+    im.style.setProperty('--w', w + 'px');
+    trail.appendChild(im); live.push(im);
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      setTimeout(function () { im.style.left = x + 'px'; im.style.top = y + 'px'; im.classList.add('in'); }, 70);
+    }); });
+    setTimeout(function () { im.classList.add('out'); setTimeout(function () { im.remove(); live = live.filter(function (x) { return x !== im; }); }, 750); }, 1300);
+    while (live.length > 9) { var o = live.shift(); o.remove(); }
+  }
+  function autoplay(on) {
+    clearInterval(auto); auto = null;
+    if (!on || reduce) return;
+    auto = setInterval(function () {
+      var r = cover.getBoundingClientRect(); if (r.bottom < 0) return;
+      var side = Math.random() < .5, w = r.width, x, y;
+      if (w < 640) { x = w * (.2 + Math.random() * .6); y = r.height * (side ? .12 + Math.random() * .08 : .82 + Math.random() * .08); }
+      else { x = side ? w * (.08 + Math.random() * .24) : w * (.68 + Math.random() * .24); y = r.height * (.18 + Math.random() * .62); }
+      spawn(x, y, x + (Math.random() - .5) * 120, y + 60);
+    }, 900);
+  }
+  if (!reduce) {
+    cover.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      autoplay(false); clearTimeout(idleT); idleT = setTimeout(function () { autoplay(true); }, 2600);
+      var r = cover.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      if (Math.hypot(x - lx, y - ly) > 90) { var px = lx < -100 ? x : lx, py = ly < -100 ? y : ly; lx = x; ly = y; spawn(x, y, px, py); }
+    });
+    autoplay(true);
+  } else { $('hint').hidden = true; }
+  $('newsX').addEventListener('click', function () { $('news').hidden = true; });
+
+  // ---------- chapters (index + menu) ----------
+  var chs = Array.prototype.slice.call(document.querySelectorAll('.ch'));
+  var arrow = '<svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 10 10 4M5 4h5v5"/></svg>';
+  function chapLinks(cls) { return chs.map(function (c, i) { return '<a href="#' + c.id + '"' + (cls ? ' class="' + cls + '"' : '') + '><span>(' + String(i + 1).padStart(3, '0') + ')</span>' + c.getAttribute('data-t') + arrow + '</a>'; }).join(''); }
+  $('chapList').innerHTML = chapLinks(); $('menuList').innerHTML = chapLinks();
+  $('sideList').innerHTML = chs.map(function (c, i) { return '<a href="#' + c.id + '"><span>(' + String(i + 1).padStart(3, '0') + ')</span>' + c.getAttribute('data-t') + '</a>'; }).join('');
+  var menu = $('menu'), mb = $('menuBtn');
+  function openMenu(v) { menu.hidden = !v; mb.setAttribute('aria-expanded', v); if (v) { var a = menu.querySelector('a'); if (a) a.focus(); } }
+  mb.addEventListener('click', function () { openMenu(menu.hidden); });
+  menu.addEventListener('click', function (e) { if (e.target === menu || e.target.closest('a')) openMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { openMenu(false); mb.focus(); } });
+  function onScroll() {
+    var cur = null; chs.forEach(function (c) { if (c.getBoundingClientRect().top <= 140) cur = c.id; });
+    document.querySelectorAll('#menuList a, #sideList a').forEach(function (a) { if (a.getAttribute('href') === '#' + cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+    document.body.classList.toggle('in', cover.getBoundingClientRect().bottom < window.innerHeight * 0.4);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // ---------- deliverables ----------
+  var BRAND = [
+    ['Rutas visuales', '3 rutas · 2 rondas', 'Tres rutas sobre el camino elegido, con foco tipográfico y el razonamiento de cada una frente a los criterios del brief.', 'Una dirección conceptual nueva tras elegir ruta supone revisar el alcance.'],
+    ['Logo y arquitectura', 'Principal, secundaria y símbolo', 'Composiciones, jerarquías, proporciones, área de protección, tamaños mínimos y usos sobre distintos fondos. Incluye la documentación técnica de construcción: retícula, curvas y geometría.', 'SVG, PNG, PDF y EPS.'],
+    ['Estilo tipográfico', 'Familias, pesos y jerarquías', 'Reglas de uso para aplicaciones y web.', 'Se identifican las licencias necesarias; su coste va aparte.'],
+    ['Iconografía', '24 iconos base', 'Estilo, colección base y reglas para ampliar el sistema.', 'SVG.'],
+    ['Sistema de color', 'HEX · RGB · CMYK', 'Paleta principal y secundaria, combinaciones y criterios de contraste para digital e impreso.', ''],
+    ['Elementos gráficos', 'Editables', 'Formas, patrones y recursos con reglas de composición.', ''],
+    ['Estilo de foto y vídeo', 'Dirección visual', 'Referencias, encuadres, ritmo, tratamiento de color y criterios de selección y producción.', 'La producción de foto y vídeo se presupuesta aparte.'],
+    ['Aplicaciones listas para usar', 'Firma de email · LinkedIn', 'Firma de email implementable y probada en los principales gestores de correo. Portada y foto de perfil de LinkedIn adaptadas a sus formatos.', 'Incluye una ronda adicional de ajustes en la firma tras su implantación.'],
+    ['Mockups de aplicación', '6 escenas sectoriales', 'Representaciones de la identidad aplicada a contextos propios de la industria del cliente, como embalaje de transporte o señalética de planta. Se seleccionan en el arranque.', 'Los mockups muestran el comportamiento de la marca y no constituyen diseños de producción. Piezas como una línea textil, papelería o publicaciones editoriales requieren un proceso de diseño específico y se presupuestan aparte.'],
+    ['Plantilla de presentación', 'PowerPoint · estructura + ejemplos', 'Portada, contraportada, separadores y páginas internas, más diapositivas de ejemplo con contenido real: gráficos, tablas y datos. Las tipologías de contenido se definen conjuntamente con el equipo de dirección.', 'Se apoya en IA para generar variantes de ejemplo a partir de los fundamentos de la marca. Compatible con Google Slides y Keynote.'],
+    ['Brandbook interactivo', 'Brand site + PDF · más de 40 páginas', 'Manual completo que documenta el sistema: logotipo y variantes, construcción técnica, tipografía, color, elementos gráficos, fotografía y aplicaciones. Guías navegables y descarga de recursos, además de la versión en PDF.', 'Incluye diseño, construcción y configuración. El plan de la plataforma es un coste recurrente del cliente.'],
+    ['Librería final', 'Nomenclatura + traspaso', 'Editables y exportaciones organizados: logotipos, colores, tipografías y licencias.', 'Sesión de traspaso de una hora con el equipo.']
+  ];
+  var WEB = [
+    ['Arquitectura y UX/UI', '~12 plantillas · 3 tamaños', 'Revisión de la arquitectura y los contenidos actuales con el cliente: qué se mantiene, qué se modifica y qué se incorpora. Mapa del sitio, recorridos por audiencia y reparto entre releases. Exploración visual, wireframes y plantillas en escritorio, tablet y móvil.', 'Componentes en Figma.'],
+    ['Sistema de plantillas', 'Plantillas con variantes', 'Cada tipo de página se diseña como una plantilla modular con variantes de fondo, color y composición de módulos. Así cada página tiene identidad propia sin multiplicar diseños.', 'El alcance se mide en plantillas únicas, no en número de páginas.'],
+    ['Copy cocreado', 'Con el equipo de dirección', 'Dirección lidera narrativa y mensajes; Olaia aporta arquitectura de contenidos, titulares, microcopy y ajuste al diseño.', 'Sin lorem ipsum: se diseña con contenido real.'],
+    ['Implementación y CMS', 'Framer', 'Colecciones del CMS (oferta, fichas y blog), carga inicial acordada, acceso y formación.', ''],
+    ['Formularios y CRM', 'Contacto + Request a Quote', 'Campos, adjuntos, validaciones, confirmaciones, destino, asignación y seguimiento. Flujo probado de principio a fin.', 'Integración directa o vía Make/Zapier según el CRM; suscripciones aparte.'],
+    ['Pruebas y publicación', 'HTTPS en su dominio', 'Navegación, formularios, responsive, accesibilidad básica, rendimiento, SEO técnico básico y medición. Coordinación de DNS y hosting.', ''],
+    ['Plataforma', 'Framer recomendado', 'Publica rápido, tiene un CMS comprensible para el equipo y es muy fiel a la marca.', 'El límite del CMS depende del plan y los formularios llegan al CRM por integración.'],
+    ['Entrega y continuidad', '30 días por release', 'Accesos, documentación, guía de uso y formación, con corrección de incidencias tras cada release.', 'Mantenimiento posterior opcional, como bolsa de horas.']
+  ];
+  function rows(list) {
+    return list.map(function (d, i) {
+      return '<details><summary><span class="no">' + String(i + 1).padStart(2, '0') + '</span><span><h3>' + d[0] + '</h3><span class="vol">' + d[1] + '</span></span><span class="pm" aria-hidden="true">+</span></summary>' +
+        '<div class="more"><p>' + d[2] + '</p>' + (d[3] ? '<p>' + d[3] + '</p>' : '') + '</div></details>';
+    }).join('');
+  }
+  $('gBrand').innerHTML = rows(BRAND); $('gWeb').innerHTML = rows(WEB);
+  function tab(web) { $('gBrand').hidden = web; $('gWeb').hidden = !web; $('tabBrand').setAttribute('aria-pressed', !web); $('tabWeb').setAttribute('aria-pressed', web); }
+  $('tabBrand').addEventListener('click', function () { tab(false); });
+  $('tabWeb').addEventListener('click', function () { tab(true); });
+
+  // ---------- sitemap ----------
+  var TREE = [
+    ['About Us', 1, [['Historia', 2], ['Compromiso', 2], ['Instalaciones', 2]]],
+    ['Oferta', 1, [['Detalle 1', 1], ['Detalle 2', 1], ['Detalle 3', 1], ['Detalle 4', 1]]],
+    ['Páginas', 2, [['6–8 independientes', 2]]],
+    ['Multinivel', 2, [['3–5 categorías', 2], ['Fichas de detalle', 2]]],
+    ['Blog / News', 2, [['Listado', 2], ['Artículo', 2]]],
+    ['Documentos', 2, [['Descargables', 2]]],
+    ['Contacto', 1, [['Formulario → CRM', 1]]],
+    ['Request a Quote', 1, [['Flujo → CRM', 1]]]
+  ];
+  function node(t, r, cls) { return '<div class="node ' + cls + ' r' + r + '"><i>Release ' + r + '</i>' + t + '</div>'; }
+  $('tree').innerHTML = '<div class="root"><div class="node main r1" style="min-width:200px;text-align:center"><i>Release 1</i>Home · navegación · footer</div></div>' +
+    '<div class="branches">' + TREE.map(function (b) { return '<div class="branch">' + node(b[0], b[1], 'main') + b[2].map(function (s) { return node(s[0], s[1], 'sub'); }).join('') + '</div>'; }).join('') + '</div>';
+  document.querySelectorAll('#releases [data-f]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('#releases [data-f]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      var f = b.getAttribute('data-f'); $('tree').className = 'tree' + (f === '0' ? '' : ' f' + f);
+    });
+  });
+
+  // ---------- timeline ----------
+  var MES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  function D(y, m, d) { return Date.UTC(y, m - 1, d); }
+  var DAY = 86400000, G0 = D(2026, 11, 2), WK = 17, G1 = G0 + WK * 7 * DAY;
+  var ROWS = [
+    { t: 'Arranque y brief creativo', k: 'brand', a: D(2026,11,2), b: D(2026,11,4), d: 'Sesión con dirección, criterios de evaluación y brief aprobado.' },
+    { t: 'Rutas visuales', k: 'brand', a: D(2026,11,5), b: D(2026,11,17), d: 'Tres rutas sobre el camino elegido. Presentación el 12 de noviembre.' },
+    { t: 'Ruta elegida', k: 'brand', m: D(2026,11,17), d: 'Hito 2. Selección conjunta de la ruta.' },
+    { t: 'Arquitectura y releases', k: 'web', a: D(2026,11,9), b: D(2026,11,20), d: 'Mapa del sitio, recorridos y reparto R1/R2. Hito 3.' },
+    { t: 'Logo, tipografía y color', k: 'brand', a: D(2026,11,18), b: D(2026,11,27), d: 'Lo esencial de la marca. Hito 4, el 27 de noviembre.' },
+    { t: 'Sistema y aplicaciones', k: 'brand', a: D(2026,11,23), b: D(2026,12,4), d: 'Iconos, gráficos, foto y vídeo, aplicaciones y plantilla de PowerPoint.' },
+    { t: 'Exploración y wireframes R1', k: 'web', a: D(2026,11,23), b: D(2026,12,4), d: 'Dirección visual de la web y wireframes con contenido real. Hito 5.' },
+    { t: 'Brandbook y librería', k: 'brand', a: D(2026,11,30), b: D(2026,12,11), d: 'Brand site, manual en PDF, librería final y traspaso.' },
+    { t: 'Brand entregada', k: 'brand', m: D(2026,12,11), d: 'Hito 6. Sistema de marca completo.' },
+    { t: 'Diseño R1', k: 'web', a: D(2026,12,7), b: D(2026,12,16), d: 'Plantillas de la R1. Hito 7, el 16 de diciembre.' },
+    { t: 'Desarrollo R1, CMS y CRM', k: 'rel', a: D(2026,12,14), b: D(2027,1,8), d: 'Framer, CMS, formularios conectados al CRM y pruebas.' },
+    { t: 'Festivos', k: 'pause', a: D(2026,12,24), b: D(2027,1,1), lbl: '24–26 dic · 31 dic – 1 ene', d: 'Solo se paran los festivos de Navidad.' },
+    { t: 'Release 1', k: 'rel', m: D(2027,1,11), acc: true, d: 'Hito 8. Publicación en el dominio del cliente.' },
+    { t: 'Ajustes R1', k: 'rel', a: D(2027,1,12), b: D(2027,1,22), d: 'Cambios sobre lo publicado a partir del uso real.' },
+    { t: 'Diseño R2', k: 'web', a: D(2027,1,12), b: D(2027,1,29), d: 'Plantillas restantes. Hito 9, el 29 de enero.' },
+    { t: 'Desarrollo R2 y carga', k: 'rel', a: D(2027,1,25), b: D(2027,2,26), d: 'Multinivel, blog, páginas independientes, carga inicial y traspaso.' },
+    { t: 'Release 2', k: 'rel', m: D(2027,2,28), acc: true, lbl: 'Fin feb · a acordar', d: 'Hito 10. Fecha a acordar con el cliente.' }
+  ];
+  function pct(x) { return (x - G0) / (G1 - G0) * 100; }
+  function dd(x) { var t = new Date(x); return t.getUTCDate() + ' ' + MES[t.getUTCMonth()]; }
+  function rng(a, b) { var A = new Date(a), B = new Date(b); return A.getUTCMonth() === B.getUTCMonth() ? A.getUTCDate() + '–' + dd(b) : dd(a) + ' – ' + dd(b); }
+  var h = '<div class="twk"><span class="tlbl">Semana</span><div class="ttrack">';
+  for (var w = 0; w < WK; w++) h += '<span>S' + (w + 1) + '</span>';
+  h += '</div></div><div class="tax"><span></span><div class="ttrack">';
+  for (var k = 0; k <= 8; k++) { var x = G0 + k * 14 * DAY; h += '<span class="tick" style="left:' + pct(x) + '%">' + dd(x) + '</span>'; }
+  h += '</div></div>';
+  ROWS.forEach(function (r, i) {
+    var when = r.lbl || (r.m ? dd(r.m) : rng(r.a, r.b)), inner;
+    if (r.m) { var xm = pct(r.m + DAY / 2), late = xm > 82;
+      inner = '<button class="tdia' + (r.acc ? ' acc' : '') + '" style="left:' + xm + '%" data-i="' + i + '" aria-label="' + r.t + ', ' + when + '"></button><span class="tlab' + (late ? ' l' : '') + '" style="left:calc(' + xm + '% ' + (late ? '- 10px' : '+ 10px') + ')">' + when + '</span>';
+    } else { var l = pct(r.a), e = pct(r.b + DAY), lt = e > 82;
+      inner = '<button class="tbar ' + r.k + '" style="left:' + l + '%;width:' + (e - l) + '%" data-i="' + i + '" aria-label="' + r.t + ', ' + when + '"></button><span class="tlab' + (lt ? ' l' : '') + '" style="left:' + (lt ? l : e) + '%">' + when + '</span>';
+    }
+    h += '<div class="trow' + (r.m ? ' ms' : '') + '" data-k="' + r.k + '"><span class="tlbl">' + r.t + '</span><div class="ttrack">' + inner + '</div></div>';
+  });
+  $('tlIn').innerHTML = h;
+  var tip = $('tip'), tl = $('tl');
+  function showTip(el) {
+    var r = ROWS[+el.getAttribute('data-i')];
+    tip.innerHTML = '<b style="font-weight:500;display:block">' + r.t + ' · ' + (r.lbl || (r.m ? dd(r.m) : rng(r.a, r.b))) + '</b>' + r.d;
+    var a = el.getBoundingClientRect(), c = tl.getBoundingClientRect();
+    tip.hidden = false;
+    var left = a.left - c.left + tl.scrollLeft + a.width / 2;
+    left = Math.max(tip.offsetWidth / 2 + 6, Math.min(left, tl.scrollWidth - tip.offsetWidth / 2 - 6));
+    tip.style.left = left + 'px'; tip.style.top = (a.top - c.top) + 'px';
+  }
+  tl.addEventListener('mouseover', function (e) { var b = e.target.closest('[data-i]'); if (b) showTip(b); });
+  tl.addEventListener('mouseout', function (e) { if (e.target.closest('[data-i]')) tip.hidden = true; });
+  tl.addEventListener('focusin', function (e) { var b = e.target.closest('[data-i]'); if (b) showTip(b); });
+  tl.addEventListener('focusout', function () { tip.hidden = true; });
+  tl.addEventListener('click', function (e) { var b = e.target.closest('[data-i]'); if (b) showTip(b); });
+  document.querySelectorAll('#calendario [data-t]').forEach(function (c) {
+    c.addEventListener('click', function () {
+      var t = c.getAttribute('data-t');
+      document.querySelectorAll('#calendario [data-t]').forEach(function (x) { x.setAttribute('aria-pressed', x === c); });
+      document.querySelectorAll('.trow').forEach(function (r) { var k = r.getAttribute('data-k'); r.classList.toggle('dim', t !== 'all' && k !== t && k !== 'pause'); });
+    });
+  });
+
+  // ---------- gallery + lightbox ----------
+  $('gal').innerHTML = G.map(function (g, i) {
+    return '<button type="button" data-g="' + i + '" aria-label="Ver ' + g[1] + ', ' + g[2] + '"><img src="img/' + g[0] + '.jpg" alt="' + g[1] + ', ' + g[2] + '" loading="lazy"><span class="cap">' + g[1] + '<span>' + g[2] + '</span></span></button>';
+  }).join('');
+  var gi = 0, lb = $('lb'), last = null;
+  function openLb(i) { gi = (i + G.length) % G.length; var g = G[gi]; $('lbImg').src = 'img/' + g[0] + '.jpg'; $('lbImg').alt = g[1] + ', ' + g[2]; $('lbT').innerHTML = g[1] + ' <span class="soft">' + g[2] + ' · ' + (gi + 1) + ' / ' + G.length + '</span>'; lb.hidden = false; $('lbClose').focus(); }
+  function closeLb() { lb.hidden = true; if (last) last.focus(); }
+  $('gal').addEventListener('click', function (e) { var b = e.target.closest('[data-g]'); if (b) { last = b; openLb(+b.getAttribute('data-g')); } });
+  $('lbPrev').addEventListener('click', function () { openLb(gi - 1); });
+  $('lbNext').addEventListener('click', function () { openLb(gi + 1); });
+  $('lbClose').addEventListener('click', closeLb);
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb(); else if (e.key === 'ArrowRight') openLb(gi + 1); else if (e.key === 'ArrowLeft') openLb(gi - 1);
+  });
+
+  // ---------- copy email ----------
+  $('copyMail').addEventListener('click', function () {
+    var t = $('mail').textContent;
+    function sel() { var r = document.createRange(); r.selectNodeContents($('mail')); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); toast('Email seleccionado: cópialo con Cmd/Ctrl + C'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { toast('Email copiado'); }, sel); else sel();
+  });
+
+  // ---------- PDF ----------
+  var pdfBtns = [$('pdf'), $('pdf2')];
+  if (window.claude && window.claude.use) {
+    window.claude.use('downloads').then(function (dl) {
+      if (!dl) return;
+      pdfBtns.forEach(function (btn) {
+        btn.hidden = false;
+        btn.addEventListener('click', function () {
+          btn.disabled = true;
+          fetch('propuesta-brand-website.pdf').then(function (r) { if (!r.ok) throw new Error('fetch'); return r.blob(); })
+            .then(function (b) { return dl.save({ filename: 'Propuesta Brand + Website · Olaia Irigoyen.pdf', data: b }); })
+            .then(function (r) { if (r && r.status === 'saved') toast('PDF descargado'); })
+            .catch(function (err) {
+              var c = err && err.code;
+              if (c === 'declined') return;
+              if (c === 'rate_limited') toast('Ya hay una descarga abierta. Inténtalo en unos segundos.');
+              else if (['unavailable', 'not_granted', 'capability_disabled', 'capability_removed'].indexOf(c) >= 0) { pdfBtns.forEach(function (x) { x.hidden = true; }); toast('La descarga no está disponible en esta vista.'); }
+              else toast('No se pudo preparar el PDF. Inténtalo de nuevo.');
+            })
+            .then(function () { btn.disabled = false; });
+        });
+      });
+    });
+  } else {
+    // Outside Claude (e.g. GitHub Pages): plain file download.
+    pdfBtns.forEach(function (btn) {
+      btn.hidden = false;
+      btn.addEventListener('click', function () {
+        var a = document.createElement('a'); a.href = 'propuesta-brand-website.pdf'; a.download = 'Propuesta Brand + Website · Olaia Irigoyen.pdf';
+        document.body.appendChild(a); a.click(); a.remove();
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
