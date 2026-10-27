@@ -238,6 +238,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .about .big { font-size: clamp(26px, 3vw, 40px); line-height: 1.12; letter-spacing: -0.05em; text-wrap: balance; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
 .tags span { background: var(--pill); border-radius: 999px; padding: 6px 13px; font-size: 14px; }
+.gal .feat { break-inside: avoid; margin: 0 0 8px; }
 .feats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 48px; }
 @media (max-width: 760px) { .feats { grid-template-columns: minmax(0, 1fr); } }
 .feat { position: relative; margin: 0; border-radius: 10px; overflow: hidden; background: var(--card); }
@@ -579,7 +580,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       </div>
       <div class="feats"><figure class="feat"><video src="vid/edgeiq-platform.mp4" poster="vid/edgeiq-platform-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="EdgeIQ, plataforma IoT: recorrido por la web"></video><figcaption class="cap">EdgeIQ<span>Marca digital y web · Esamesa Studio</span></figcaption></figure><figure class="feat"><video src="vid/colectin-web.mp4" poster="vid/colectin-web-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Colectin, marketplace: recorrido por la web"></video><figcaption class="cap">Colectin<span>Marketplace · producto y web</span></figcaption></figure></div>
       <div class="gal" id="gal"></div>
-      <figure class="feat" style="margin-top:8px"><video src="vid/mailuna-ipad.mp4" poster="vid/mailuna-ipad-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Mailuna, plataforma de IA para redes eléctricas: demo en iPad" style="aspect-ratio:1194/834"></video><figcaption class="cap">Mailuna<span>Plataforma de IA para redes eléctricas · UX/UI</span></figcaption></figure>
     </div>
   </section>
 
@@ -833,6 +833,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   $('gal').innerHTML = G.map(function (g, i) {
     return '<button type="button" data-g="' + i + '" aria-label="Ver ' + g[1] + ', ' + g[2] + '"><img src="img/' + g[0] + '.jpg" alt="' + g[1] + ', ' + g[2] + '" loading="lazy"><span class="cap">' + g[1] + '<span>' + g[2] + '</span></span></button>';
   }).join('');
+  $('gal').insertAdjacentHTML('beforeend', '<figure class="feat"><video src="vid/mailuna-ipad.mp4" poster="vid/mailuna-ipad-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Mailuna, plataforma de IA para redes eléctricas: demo en iPad" style="aspect-ratio:1194/834"></video><figcaption class="cap">Mailuna<span>Plataforma de IA para redes eléctricas · UX/UI</span></figcaption></figure>');
   var gi = 0, lb = $('lb'), last = null;
   function openLb(i) { gi = (i + G.length) % G.length; var g = G[gi]; $('lbImg').src = 'img/' + g[0] + '.jpg'; $('lbImg').alt = g[1] + ', ' + g[2]; $('lbT').innerHTML = g[1] + ' <span class="soft">' + g[2] + ' · ' + (gi + 1) + ' / ' + G.length + '</span>'; lb.hidden = false; $('lbClose').focus(); }
   function closeLb() { lb.hidden = true; if (last) last.focus(); }
