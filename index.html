@@ -238,15 +238,16 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .about .big { font-size: clamp(26px, 3vw, 40px); line-height: 1.12; letter-spacing: -0.05em; text-wrap: balance; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
 .tags span { background: var(--pill); border-radius: 999px; padding: 6px 13px; font-size: 14px; }
-.gal .feat { break-inside: avoid; margin: 0 0 8px; }
+.gal .feat { margin: 0; }
 .feats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 48px; }
 @media (max-width: 760px) { .feats { grid-template-columns: minmax(0, 1fr); } }
 .feat { position: relative; margin: 0; border-radius: 10px; overflow: hidden; background: var(--card); }
 .feat video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .feat .cap { position: absolute; left: 10px; bottom: 10px; background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(10px); border-radius: 999px; padding: 5px 11px; font-size: 13px; }
 .feat .cap span { color: var(--soft); margin-left: 4px; }
-.gal { columns: 3 260px; column-gap: 8px; margin-top: 8px; }
-.gal button { display: block; width: 100%; border: 0; padding: 0; margin: 0 0 8px; background: var(--card); border-radius: 10px; overflow: hidden; cursor: zoom-in; position: relative; break-inside: avoid; }
+.gal { display: flex; gap: 8px; margin-top: 8px; align-items: flex-start; }
+.gcol { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.gal button { display: block; width: 100%; border: 0; padding: 0; margin: 0; background: var(--card); border-radius: 10px; overflow: hidden; cursor: zoom-in; position: relative; break-inside: avoid; }
 .gal img { width: 100%; height: auto; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
 .gal button:hover { filter: brightness(1.04); }
 .gal .cap { position: absolute; left: 10px; bottom: 10px; background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(10px); border-radius: 999px; padding: 5px 11px; font-size: 13px; }
@@ -644,12 +645,25 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   // ---------- images ----------
   var G = [
-    ['colectin-marca', 'Colectin', 'Identidad visual'], ['tadig-dashboard', 'TADIG', 'Rediseño UX/UI y design system'],
-    ['balearia-app', 'Baleària', 'UX/UI de app'], ['jackrom-web', 'Jackrom', 'Diseño web y dirección visual'], ['capchase-web', 'Capchase', 'Web · Senior Product Designer'],
-    ['cocacola-app', 'Coca-Cola', 'App de personalización'], ['vype-app', 'Vype', 'UX/UI de app'], ['indra-campana', 'Indra', 'Campaña de captación'],
-    ['colectin-redes', 'Colectin', 'Piezas para redes'], ['capchase-producto', 'Capchase', 'Producto · Senior Product Designer'],
-    ['emotionhack-app', 'Emotionhack', 'UX/UI de app'], ['colectin-parche', 'Colectin', 'Aplicaciones de marca'], ['xendra-disco', 'Xendra', 'Identidad y diseño de disco'], ['xendra-cartel', 'Xendra', 'Cartel de gira · diseño gráfico'], ['web-mundo', 'Web interactiva', 'Diseño y desarrollo de un mundo explorable'], ['voss-web', 'VOSS', 'Dirección de arte y estrategia visual'],
-    ['cocacola-app2', 'Coca-Cola', 'App de personalización'], ['colectin-cartel', 'Colectin', 'Cartelería de marca']
+    ['cocacola-app', 'Coca-Cola', 'App de personalización'],
+    ['colectin-parche', 'Colectin', 'Aplicaciones de marca'],
+    ['tadig-dashboard', 'TADIG', 'Rediseño UX/UI y design system'],
+    ['balearia-app', 'Baleària', 'UX/UI de app'],
+    ['jackrom-web', 'Jackrom', 'Diseño web y dirección visual'],
+    ['capchase-web', 'Capchase', 'Web · Senior Product Designer'],
+    ['colectin-marca', 'Colectin', 'Identidad visual'],
+    ['indra-portal', 'Indra', 'Portal interno de RRHH · UX/UI'],
+    ['vype-app', 'Vype', 'UX/UI de app'],
+    ['indra-campana', 'Indra', 'Campaña de captación'],
+    ['colectin-redes', 'Colectin', 'Piezas para redes'],
+    ['capchase-producto', 'Capchase', 'Producto · Senior Product Designer'],
+    ['emotionhack-app', 'Emotionhack', 'UX/UI de app'],
+    ['xendra-disco', 'Xendra', 'Identidad y diseño de disco'],
+    ['xendra-cartel', 'Xendra', 'Cartel de gira · diseño gráfico'],
+    ['web-mundo', 'Web interactiva', 'Diseño y desarrollo de un mundo explorable'],
+    ['voss-web', 'VOSS', 'Dirección de arte y estrategia visual'],
+    ['cocacola-app2', 'Coca-Cola', 'App de personalización'],
+    ['colectin-cartel', 'Colectin', 'Cartelería de marca']
   ];
   G.forEach(function (g) { var i = new Image(); i.src = 'img/' + g[0] + '.jpg'; });
 
@@ -833,8 +847,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   $('gal').innerHTML = G.map(function (g, i) {
     return '<button type="button" data-g="' + i + '" aria-label="Ver ' + g[1] + ', ' + g[2] + '"><img src="img/' + g[0] + '.jpg" alt="' + g[1] + ', ' + g[2] + '" loading="lazy"><span class="cap">' + g[1] + '<span>' + g[2] + '</span></span></button>';
   }).join('');
-  (function () { var V = ['<figure class="feat"><video src="vid/colectin-web.mp4" poster="vid/colectin-web-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Colectin, marketplace: recorrido por la web"></video><figcaption class="cap">Colectin<span>Marketplace · producto y web</span></figcaption></figure>', '<figure class="feat"><video src="vid/edgeiq-platform.mp4" poster="vid/edgeiq-platform-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="EdgeIQ, plataforma IoT: recorrido por la web"></video><figcaption class="cap">EdgeIQ<span>Marca digital y web · Esamesa Studio</span></figcaption></figure>', '<figure class="feat"><video src="vid/mailuna-ipad.mp4" poster="vid/mailuna-ipad-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Mailuna, plataforma de IA para redes eléctricas: demo en iPad" style="aspect-ratio:1194/834"></video><figcaption class="cap">Mailuna<span>Plataforma de IA para redes eléctricas · UX/UI</span></figcaption></figure>'], at = [0, 10, 18], g = $('gal');
+  (function () { var V = ['<figure class="feat"><video src="vid/colectin-web.mp4" poster="vid/colectin-web-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Colectin, marketplace: recorrido por la web"></video><figcaption class="cap">Colectin<span>Marketplace · producto y web</span></figcaption></figure>', '<figure class="feat"><video src="vid/edgeiq-platform.mp4" poster="vid/edgeiq-platform-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="EdgeIQ, plataforma IoT: recorrido por la web"></video><figcaption class="cap">EdgeIQ<span>Marca digital y web · Esamesa Studio</span></figcaption></figure>', '<figure class="feat"><video src="vid/mailuna-ipad.mp4" poster="vid/mailuna-ipad-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Mailuna, plataforma de IA para redes eléctricas: demo en iPad" style="aspect-ratio:1194/834"></video><figcaption class="cap">Mailuna<span>Plataforma de IA para redes eléctricas · UX/UI</span></figcaption></figure>'], at = [0, 3, 15], g = $('gal');
     at.forEach(function (n, x) { var ref = g.children[n]; if (ref) ref.insertAdjacentHTML('beforebegin', V[x]); else g.insertAdjacentHTML('beforeend', V[x]); });
+  })();
+  (function () {
+    var g = $('gal'), items = Array.prototype.slice.call(g.children), cur = 0;
+    function lay() {
+      var w = g.clientWidth, n = w >= 820 ? 3 : (w >= 520 ? 2 : 1);
+      if (n === cur) return; cur = n; g.innerHTML = '';
+      var cols = []; for (var i = 0; i < n; i++) { var c = document.createElement('div'); c.className = 'gcol'; g.appendChild(c); cols.push(c); }
+      items.forEach(function (el, i) { cols[i % n].appendChild(el); });
+    }
+    lay(); window.addEventListener('resize', lay);
   })();
   var gi = 0, lb = $('lb'), last = null;
   function openLb(i) { gi = (i + G.length) % G.length; var g = G[gi]; $('lbImg').src = 'img/' + g[0] + '.jpg'; $('lbImg').alt = g[1] + ', ' + g[2]; $('lbT').innerHTML = g[1] + ' <span class="soft">' + g[2] + ' · ' + (gi + 1) + ' / ' + G.length + '</span>'; lb.hidden = false; $('lbClose').focus(); }
