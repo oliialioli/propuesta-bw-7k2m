@@ -301,6 +301,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .side { display: none; }
 @media (min-width: 1000px) {
   main > section:not(.cover), main > footer { padding-left: 240px; }
+  main > footer.end { padding-left: 240px; }
   .side { display: flex; flex-direction: column; position: fixed; z-index: 15; top: 0; bottom: 0; left: 0; width: 240px; background: var(--bg); border-right: 1px solid var(--line);
     padding: calc(26px + env(safe-area-inset-top, 0px)) 26px calc(22px + env(safe-area-inset-bottom, 0px)) max(26px, env(safe-area-inset-left, 0px));
     transform: translateX(-101%); transition: transform .55s cubic-bezier(.2,.7,.2,1); }
@@ -625,7 +626,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <footer class="end" id="contacto">
     <div class="wrap">
       <h2>Hablemos</h2>
-      <div class="row"><span class="pill" style="cursor:default" id="mail">olaiairigoien@gmail.com</span><button class="pill" type="button" id="copyMail">Copiar email</button><a class="pill" href="#top">Volver arriba ↑</a></div>
+      <div class="row"><button class="pill cp" type="button" data-mail="olaia@esamesa.com" title="Copiar email">olaia@esamesa.com <svg class="ic" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4.5" y="4.5" width="7" height="7" rx="1.5"/><path d="M9.5 4.5V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v5.5a1 1 0 0 0 1 1h1.5"/></svg></button><button class="pill cp" type="button" data-mail="adriana@esamesa.com" title="Copiar email">adriana@esamesa.com <svg class="ic" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4.5" y="4.5" width="7" height="7" rx="1.5"/><path d="M9.5 4.5V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v5.5a1 1 0 0 0 1 1h1.5"/></svg></button><a class="pill" href="#top">Volver arriba ↑</a></div>
       <div class="fine"><span>Documento confidencial, preparado para el equipo de proyecto. Se ruega no compartirlo sin autorización.</span><span>Esamesa Studio · 2026</span></div>
     </div>
   </footer>
@@ -884,10 +885,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   });
 
   // ---------- copy email ----------
-  $('copyMail').addEventListener('click', function () {
-    var t = $('mail').textContent;
-    function sel() { var r = document.createRange(); r.selectNodeContents($('mail')); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); toast('Email seleccionado: cópialo con Cmd/Ctrl + C'); }
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { toast('Email copiado'); }, sel); else sel();
+  document.querySelectorAll('.cp').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-mail');
+      function sel() { var r = document.createRange(); r.selectNodeContents(b); var x = window.getSelection(); x.removeAllRanges(); x.addRange(r); toast('Email seleccionado: cópialo con Cmd/Ctrl + C'); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { toast('Email copiado: ' + t); }, sel); else sel();
+    });
   });
 
   // ---------- PDF ----------
